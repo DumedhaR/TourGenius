@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const initialValues = {
@@ -23,6 +24,12 @@ function LoginPage() {
 
     console.log('Email ', email);
     console.log('Password ', password);
+  };
+
+  const navigate = useNavigate();
+
+  const navigateToRegister = () => {
+    navigate('/register');
   };
 
   return (
@@ -70,7 +77,7 @@ function LoginPage() {
           </Formik>
         </div>
         <div>
-          <Button variant="text" sx={{ marginTop: '20px' }}>
+          <Button variant="text" sx={{ marginTop: '20px' }} onClick={navigateToRegister}>
             Create New Account
           </Button>
         </div>
