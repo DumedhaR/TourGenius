@@ -1,5 +1,4 @@
 package com.codemind.tourgenius.service;
 
-public interface TestService {
-
+public class TestServiceImpl {
 }
