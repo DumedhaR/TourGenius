@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 function RegisterPage() {
   const initialValues = {
@@ -15,16 +16,21 @@ function RegisterPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    age: '',
+    birthday: '',
     country: ''
   };
 
   const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const maxDate = dayjs().subtract(15, 'years');
 
   const validationSchema = yup.object().shape({
     firstName: yup.string().required('Required'),
     lastName: yup.string().required('Required'),
-    age: yup.number().typeError('Age must be a number').required('Required'),
+    birthday: yup
+      .date()
+      .typeError(`Format 'Month/Date/Year'`)
+      .max(maxDate, 'Must be at least 15 years of Age')
+      .required('Required'),
     country: yup.string().required('Required'),
     email: yup.string().email('Please Enter Valid Email').required('Required'),
     password: yup
@@ -41,11 +47,13 @@ function RegisterPage() {
     const email = data.email.toLowerCase();
     const password = data.password;
     const confirmPassword = data.confirmPassword;
+    const birthday = data.birthday;
 
     if (password === confirmPassword) {
       console.log('Email ', email);
       console.log('Password ', password);
       console.log('confirm Password', confirmPassword);
+      console.log('birthday ', birthday);
     }
   };
 
@@ -116,12 +124,16 @@ function RegisterPage() {
                 <Field
                   as={TextField}
                   sx={{ width: '49%' }}
-                  name="age"
-                  label="Age"
+                  name="birthday"
+                  label="Date of Birth"
                   variant="outlined"
                   size="small"
+                  placeholder="MM/DD/YYYY"
                   helperText={
-                    <ErrorMessage name="age" render={(msg) => <span id="errMsg">{msg}</span>} />
+                    <ErrorMessage
+                      name="birthday"
+                      render={(msg) => <span id="errMsg">{msg}</span>}
+                    />
                   }
                 />
                 <Autocomplete
