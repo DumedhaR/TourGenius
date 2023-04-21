@@ -19,7 +19,7 @@ public class AccountController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public Account createAccount(@RequestBody AccountDto accountDto){
+    public boolean createAccount(@RequestBody AccountDto accountDto){
         return accountService.createAccount(accountDto);
     }
 

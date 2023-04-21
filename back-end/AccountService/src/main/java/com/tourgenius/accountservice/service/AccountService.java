@@ -4,7 +4,7 @@ import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.model.Account;
 
 public interface AccountService {
-    Account createAccount(AccountDto accountDto);
+    boolean createAccount(AccountDto accountDto);
 
     Account changePassword(String email, String password);
 

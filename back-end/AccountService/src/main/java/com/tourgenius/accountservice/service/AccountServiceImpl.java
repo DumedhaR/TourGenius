@@ -1,7 +1,6 @@
 package com.tourgenius.accountservice.service;
 
 import com.tourgenius.accountservice.dto.AccountDto;
-import com.tourgenius.accountservice.exception.AccountIsAvailableException;
 import com.tourgenius.accountservice.exception.AccountNotFoundException;
 import com.tourgenius.accountservice.model.Account;
 import com.tourgenius.accountservice.repository.AccountRepository;
@@ -17,16 +16,17 @@ public class AccountServiceImpl implements AccountService{
     private final AccountRepository accountRepository;
 
     @Override
-    public Account createAccount(@NotNull AccountDto accountDto) {
+    public boolean createAccount(@NotNull AccountDto accountDto) {
         String accountId = encrypt(accountDto.getEmail());
-        if(accountRepository.findById(accountId).isPresent()){
-            throw new AccountIsAvailableException("Email", accountDto.getEmail());
+        if(accountRepository.findById(accountId).isEmpty()){
+            Account account = new Account();
+            account.setAccountId(accountId);
+            account.setPassword(encrypt(accountDto.getPassword()));
+            account.setRole(accountDto.getRole());
+            accountRepository.save(account);
+            return true;
         }
-        Account account = new Account();
-        account.setAccountId(accountId);
-        account.setPassword(encrypt(accountDto.getPassword()));
-        account.setRole(accountDto.getRole());
-        return accountRepository.save(account);
+        return false;
     }
 
     @Override
