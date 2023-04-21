@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends MongoRepository <Account, String> {
-
     Optional <Account> findAccountByAccountIdAndPassword(String accountId, String password);
 
 }
