@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
 import { useState } from 'react';
 
 function DestinationCard({ data }) {
@@ -24,6 +25,16 @@ function DestinationCard({ data }) {
               <Typography gutterBottom variant="h5" component="div">
                 {element.destinationName}
               </Typography>
+              <div className="rating" style={{ display: 'flex' }}>
+                <Rating name="read-only" value={element.destinationRating} readOnly />
+                <Typography
+                  sx={{ marginLeft: '10px', marginTop: '-5px' }}
+                  gutterBottom
+                  variant="h6"
+                  component="div">
+                  {element.destinationRating}
+                </Typography>
+              </div>
               <Typography gutterBottom variant="h7" component="div">
                 Situated in {element.destinationCountry}
               </Typography>
