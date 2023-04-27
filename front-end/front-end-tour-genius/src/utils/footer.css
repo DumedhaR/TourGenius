@@ -1,0 +1,29 @@
+.footer {
+  width: 100%;
+  height: 500px;
+  padding: 50px 100px 50px 100px;
+}
+#tourGeniuz {
+  color: green;
+}
+#sriLanka {
+  color: gold;
+  margin-top: -20px;
+}
+.content {
+  width: 100%;
+  height: 80%;
+  margin-top: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+#subContent {
+  width: 23%;
+  height: 250px;
+}
+#addressNZ {
+  margin-top: 66px;
+}
+#addressENG {
+  margin-top: 66px;
+}
