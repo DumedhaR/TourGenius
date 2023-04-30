@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Date stringToDate(String date) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
         return format.parse(date);
     }
 }
