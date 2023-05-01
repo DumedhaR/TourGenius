@@ -1,6 +1,5 @@
-package com.tourgenius.userservice.model;
+package com.tourgenius.travellerservice.model;
 
-import jakarta.annotation.Generated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
-@Document(collection = "User")
+@Document(collection = "Traveller")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User {
+public class Traveller {
     @Id
     private String userId;
     @Field(name = "firstName")

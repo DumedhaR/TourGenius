@@ -1,4 +1,4 @@
-package com.tourgenius.userservice.dto;
+package com.tourgenius.travellerservice.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

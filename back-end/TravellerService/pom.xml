@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.tourgenius</groupId>
-    <artifactId>UserService</artifactId>
+    <artifactId>TravellerService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>UserService</name>
     <description>UserService</description>
