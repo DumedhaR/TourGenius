@@ -16,4 +16,6 @@ public class BookingCreateRequest {
     private String checkOutTime;
 
     private Long userId;
+
+    private Long roomId;
 }

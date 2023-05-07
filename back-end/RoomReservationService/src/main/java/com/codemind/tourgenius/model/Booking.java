@@ -24,5 +24,7 @@ public class Booking {
 
     private Long userId;
 
+    private Long roomId;
+
     
 }
