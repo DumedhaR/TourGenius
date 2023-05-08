@@ -17,4 +17,6 @@ public class BookingSearchResponse {
     private String checkOutTime;
 
     private Long userId;
+
+    private Long roomId;
 }
