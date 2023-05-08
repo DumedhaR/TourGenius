@@ -1,24 +1,26 @@
 .feedbackForm {
   background-image: url('../assests/images/feedback.png');
   width: 100%;
-  min-height: 100vh;
+  min-height: 580px;
   height: fit-content;
-  background-size: 100%;
-  position: absolute;
+  background-size: cover;
+  position: relative;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: space-around;
+  border: 1px solid black;
 }
-.content {
+.contentFeedback {
   width: 320px;
   height: 320px;
   color: white;
   font-size: 40pt;
 }
-.form {
+.formFeedback {
   width: 300px;
   min-height: 300px;
   height: fit-content;
-  margin-top: 140px;
+  margin-top: 80px;
   background-color: rgb(173, 255, 47, 0.8);
   padding: 40px 20px 40px 20px;
   border-radius: 10px;
