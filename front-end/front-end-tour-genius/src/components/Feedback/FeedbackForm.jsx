@@ -29,10 +29,10 @@ function FeedbackForm() {
   };
   return (
     <div className="feedbackForm">
-      <div className="content">
+      <div className="contentFeedback">
         <p>Send us your thoughts about us...</p>
       </div>
-      <div className="form">
+      <div className="formFeedback">
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
