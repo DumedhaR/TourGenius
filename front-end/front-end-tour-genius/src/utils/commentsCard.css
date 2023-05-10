@@ -1,19 +1,19 @@
-.card {
-  width: 170px;
+.cardComments {
+  width: 250px;
   min-height: 320px;
   background-color: white;
   height: fit-content;
   padding: 25px 40px 20px 40px;
 }
-.message {
+.messageComments {
   font-size: 22px;
   padding-top: 20px;
 }
-.user {
+.userComments {
   margin-top: 40px;
   display: flex;
 }
-.userName {
+.userNameComments {
   font-size: 10pt;
   margin-top: 10px;
   margin-left: 10px;
