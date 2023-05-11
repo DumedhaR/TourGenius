@@ -8,53 +8,49 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { useState } from 'react';
 
-function DestinationCard({ data }) {
+function DestinationCard({
+  destinationName,
+  destinationImage,
+  destinationRating,
+  destinationCountry,
+  destinationDescription
+}) {
   const [showMore, setShowMore] = useState(false);
   return (
-    <div>
-      {data.map((element, index) => (
-        <div className="card" key={`desCard-${index}`}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt={element.destinationName}
-              height="200px"
-              image={element.destinationImage}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {element.destinationName}
-              </Typography>
-              <div className="rating" style={{ display: 'flex' }}>
-                <Rating name="read-only" value={element.destinationRating} readOnly />
-                <Typography
-                  sx={{ marginLeft: '10px', marginTop: '-5px' }}
-                  gutterBottom
-                  variant="h6"
-                  component="div">
-                  {element.destinationRating}
-                </Typography>
-              </div>
-              <Typography gutterBottom variant="h7" component="div">
-                Situated in {element.destinationCountry}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {showMore
-                  ? element.destinationDescription
-                  : element.destinationDescription &&
-                    element.destinationDescription.substring(0, 100)}
-              </Typography>
-            </CardContent>
-            {element.destinationDescription.length >= 100 && (
-              <CardActions>
-                <Button size="small" onClick={() => setShowMore(!showMore)}>
-                  {!showMore ? 'show more' : 'show less'}
-                </Button>
-              </CardActions>
-            )}
-          </Card>
-        </div>
-      ))}
+    <div className="cardDestination">
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia component="img" alt={destinationName} height="200px" image={destinationImage} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {destinationName}
+          </Typography>
+          <div className="rating" style={{ display: 'flex' }}>
+            <Rating name="read-only" value={destinationRating} readOnly />
+            <Typography
+              sx={{ marginLeft: '10px', marginTop: '-5px' }}
+              gutterBottom
+              variant="h6"
+              component="div">
+              {destinationRating}
+            </Typography>
+          </div>
+          <Typography gutterBottom variant="h7" component="div">
+            Situated in {destinationCountry}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {showMore
+              ? destinationDescription
+              : destinationDescription && destinationDescription.substring(0, 100)}
+          </Typography>
+        </CardContent>
+        {destinationDescription.length >= 100 && (
+          <CardActions>
+            <Button size="small" onClick={() => setShowMore(!showMore)}>
+              {!showMore ? 'show more' : 'show less'}
+            </Button>
+          </CardActions>
+        )}
+      </Card>
     </div>
   );
 }
