@@ -1,0 +1,83 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+}
+.homeHeader {
+  background-image: url('../assests/images/home.png');
+  width: 100%;
+  height: 90vh;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 1px solid black;
+}
+.headerContent {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin-top: 175px;
+}
+#homeTopic {
+  color: #ffffff;
+  text-align: center;
+  font-size: 45pt;
+}
+#homeDescription {
+  color: #f5f5f5;
+  text-align: center;
+  font-size: 17pt;
+}
+.signup {
+  width: 100%;
+  height: 550px;
+  background-color: #03ce03;
+  display: flex;
+  justify-content: space-around;
+}
+.signupImage {
+  background-image: url('../assests/images/signUp.png');
+  width: 35%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.signupContent {
+  width: 45%;
+  height: 100%;
+  padding-left: 50px;
+  padding-top: 50px;
+}
+#contentDescription {
+  width: 60%;
+  color: #ffffff;
+  font-size: 32pt;
+  line-height: 1.1;
+}
+#joinTourGeniuz {
+  width: 60%;
+  color: #f5f5f5;
+  font-size: 15pt;
+  margin-top: -20px;
+}
+.commentsHome {
+  width: 100%;
+  min-height: 600px;
+  height: fit-content;
+  background-color: #e6ecfc;
+  border: 1px solid #e6ecfc;
+  padding-bottom: 50px;
+}
+.destinationHome {
+  width: 100%;
+  min-height: 600px;
+  height: fit-content;
+  padding-bottom: 50px;
+}
+.hotelHome {
+  width: 100%;
+  min-height: 600px;
+  height: fit-content;
+  padding-bottom: 50px;
+}

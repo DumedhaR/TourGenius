@@ -1,0 +1,15 @@
+#hotelTopic {
+  margin-top: 30px;
+  margin-left: 60px;
+}
+#hotelDescription {
+  margin-top: -25px;
+  margin-left: 60px;
+}
+.containerHotel {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 50px;
+}

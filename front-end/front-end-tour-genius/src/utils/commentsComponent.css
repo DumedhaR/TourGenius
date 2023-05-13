@@ -1,0 +1,11 @@
+.commentsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 50px;
+}
+#commentsTopic {
+  margin-top: 30px;
+  margin-left: 60px;
+}
