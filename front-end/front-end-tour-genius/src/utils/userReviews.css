@@ -1,0 +1,9 @@
+.travelersComments {
+  width: 400px;
+  height: fit-content;
+  display: flex;
+  padding-bottom: 30px;
+}
+.reviewsUser {
+  padding-left: 20px;
+}
