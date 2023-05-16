@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Admin {
     @Id
+    private String id;
     private String email;
     private String password;
     private String name;

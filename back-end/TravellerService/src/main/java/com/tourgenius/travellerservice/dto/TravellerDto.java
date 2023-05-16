@@ -13,4 +13,5 @@ public class TravellerDto {
     private String password;
     private String dateOfBirth;
     private String country;
+    private byte[] profilePicture;
 }

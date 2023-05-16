@@ -26,4 +26,7 @@ public class Traveller {
     private Date dateOfBirth;
     @Field(name = "country")
     private String country;
+    @Field(name = "profilePicture")
+    private byte[] profilePicture;
+
 }

@@ -40,6 +40,7 @@ public class TravellerServiceImpl implements TravellerService {
         traveller.setEmail(travellerDto.getEmail());
         traveller.setDateOfBirth(stringToDate(travellerDto.getDateOfBirth()));
         traveller.setCountry(travellerDto.getCountry());
+        traveller.setProfilePicture(travellerDto.getProfilePicture());
         return travellerRepository.save(traveller);
     }
 
@@ -57,6 +58,9 @@ public class TravellerServiceImpl implements TravellerService {
         }
         if(travellerDto.getCountry() != null){
             currentTraveller.setCountry(travellerDto.getCountry());
+        }
+        if(travellerDto.getProfilePicture() != null){
+            currentTraveller.setProfilePicture(travellerDto.getProfilePicture());
         }
         return travellerRepository.save(currentTraveller);
     }
