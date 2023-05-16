@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../utils/userReviews.css';
+import '../../utils/reviewCard.css';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
