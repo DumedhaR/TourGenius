@@ -25,6 +25,7 @@ public class BookingController {
         booking.setCheckOutDate(request.getCheckOutDate());
         booking.setCheckOutTime(request.getCheckOutTime());
         booking.setUserId(request.getUserId());
+        booking.setRoomId(request.getRoomId());
         bookingService.create(booking);
         return "booking Added";
     }
@@ -38,6 +39,7 @@ public class BookingController {
         booking.setCheckOutDate(request.getCheckOutDate());
         booking.setCheckOutTime(request.getCheckOutTime());
         booking.setUserId(request.getUserId());
+        booking.setRoomId(request.getRoomId());
         bookingService.update(booking);
         return "booking data Updated";
     }
@@ -54,6 +56,7 @@ public class BookingController {
             response.setCheckOutDate(booking.getCheckOutDate());
             response.setCheckOutTime(booking.getCheckOutTime());
             response.setUserId(booking.getUserId());
+            response.setRoomId(booking.getRoomId());
             bookingSearchResponseList.add(response);
         }
 
@@ -71,6 +74,7 @@ public class BookingController {
         response.setCheckOutDate(booking.getCheckOutDate());
         response.setCheckOutTime(booking.getCheckOutTime());
         response.setUserId(booking.getUserId());
+        response.setRoomId(booking.getRoomId());
 
         return response;
     }
