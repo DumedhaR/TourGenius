@@ -1,4 +1,4 @@
-package com.tourgenius.travellerservice.exception;
+package com.tourgenius.travelerservice.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

@@ -1,11 +1,11 @@
-package com.tourgenius.travellerservice.dto;
+package com.tourgenius.travelerservice.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class TravellerDto {
+public class TravelerDto {
 
     private String firstName;
     private String lastName;

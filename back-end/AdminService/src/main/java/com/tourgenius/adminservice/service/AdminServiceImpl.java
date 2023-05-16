@@ -4,8 +4,10 @@ import com.tourgenius.adminservice.dto.AdminDto;
 import com.tourgenius.adminservice.model.Admin;
 import com.tourgenius.adminservice.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+
 @RequiredArgsConstructor
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -16,7 +18,7 @@ public class AdminServiceImpl implements AdminService {
         Admin newAdmin = new Admin();
         newAdmin.setEmail(adminDto.getEmail());
         newAdmin.setName(adminDto.getName());
-        newAdmin.setPassword(adminDto.getPassword());
+        newAdmin.setPassword(encrypt(adminDto.getPassword()));
         return adminRepository.save(newAdmin);
     }
     @Override
@@ -26,7 +28,7 @@ public class AdminServiceImpl implements AdminService {
             current.setName(adminDto.getName());
         }
         if(adminDto.getPassword() != null){
-            current.setPassword(adminDto.getPassword());
+            current.setPassword(encrypt(adminDto.getPassword()));
         }
         return adminRepository.save(current);
     }
@@ -37,5 +39,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean deleteAdmin(String email) {
         return adminRepository.deleteAdminByEmail(email);
+    }
+    @Override
+    public String encrypt(String plainText) {
+        return new DigestUtils("SHA3-256").digestAsHex(plainText);
     }
 }

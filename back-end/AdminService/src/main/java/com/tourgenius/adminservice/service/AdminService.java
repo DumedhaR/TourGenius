@@ -8,4 +8,5 @@ public interface AdminService {
     boolean deleteAdmin(String email);
     Admin createAdmin(AdminDto adminDto);
     Admin updateAdmin(AdminDto adminDto);
+    String encrypt(String plainText);
 }

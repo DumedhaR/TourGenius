@@ -1,4 +1,4 @@
-package com.tourgenius.travellerservice.model;
+package com.tourgenius.travelerservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
-@Document(collection = "Traveller")
+@Document(collection = "Traveler")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Traveller {
+public class Traveler {
     @Id
     private String userId;
     @Field(name = "firstName")

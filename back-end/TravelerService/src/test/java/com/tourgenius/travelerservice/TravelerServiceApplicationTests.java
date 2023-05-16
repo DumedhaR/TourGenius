@@ -1,10 +1,10 @@
-package com.tourgenius.travellerservice;
+package com.tourgenius.travelerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TravellerServiceApplicationTests {
+class TravelerServiceApplicationTests {
 
     @Test
     void contextLoads() {
