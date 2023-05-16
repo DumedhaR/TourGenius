@@ -4,10 +4,7 @@ import com.tourgenius.clientservice.dto.ClientDto;
 import com.tourgenius.clientservice.model.Client;
 import com.tourgenius.clientservice.service.ClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clients")
@@ -20,4 +17,18 @@ public class ClientController {
     public Client createClient(@RequestBody ClientDto clientDto){
         return clientService.createClient(clientDto);
     }
+    @PutMapping("/update")
+    public Client updateClient(@RequestBody ClientDto clientDto) {
+        return clientService.updateClient(clientDto);
+    }
+    @DeleteMapping("/delete/{email}")
+    public boolean deleteClient(@PathVariable String email){
+        return clientService.deleteClient(email);
+    }
+    @GetMapping("/{email}")
+    public Client getClient(@PathVariable String email){
+        return clientService.getClient(email);
+    }
+
+
 }

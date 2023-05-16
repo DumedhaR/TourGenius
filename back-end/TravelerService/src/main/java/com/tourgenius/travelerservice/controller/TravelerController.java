@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/travellers")
+@RequestMapping("/traveler")
 @RequiredArgsConstructor
 public class TravelerController {
 
