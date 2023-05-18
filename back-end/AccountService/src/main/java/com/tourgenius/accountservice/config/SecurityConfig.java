@@ -1,4 +1,4 @@
-package com.tourgenius.accountservice.Config;
+package com.tourgenius.accountservice.config;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

@@ -1,4 +1,4 @@
-package com.tourgenius.accountservice.Config;
+package com.tourgenius.accountservice.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

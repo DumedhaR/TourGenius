@@ -1,4 +1,4 @@
-package com.tourgenius.accountservice.Config;
+package com.tourgenius.accountservice.config;
 
 import com.tourgenius.accountservice.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;

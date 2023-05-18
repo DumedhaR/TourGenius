@@ -1,9 +1,8 @@
 package com.tourgenius.accountservice.service;
 
-import com.tourgenius.accountservice.Config.JwtService;
+import com.tourgenius.accountservice.config.JwtService;
 import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.dto.AuthResponse;
-import com.tourgenius.accountservice.exception.AccountNotFoundException;
 import com.tourgenius.accountservice.model.Account;
 import com.tourgenius.accountservice.model.Role;
 import com.tourgenius.accountservice.repository.AccountRepository;
@@ -12,7 +11,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
