@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends MongoRepository <Account, String> {
-    Optional <Account> findAccountByAccountIdAndPassword(String accountId, String password);
+    Optional <Account> findAccountByEmail(String email);
+    void deleteAccountByEmail(String email);
 
 }
