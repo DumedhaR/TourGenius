@@ -2,7 +2,6 @@ package com.tourgenius.travelerservice.service;
 
 import com.tourgenius.travelerservice.dto.AccountDto;
 import com.tourgenius.travelerservice.dto.TravelerDto;
-import com.tourgenius.travelerservice.exception.AccountIsAvailableException;
 import com.tourgenius.travelerservice.model.Traveler;
 import com.tourgenius.travelerservice.repository.TravelerRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -25,22 +23,14 @@ public class TravelerServiceImpl implements TravelerService {
 
     @Override
     public Traveler createTraveller(@NotNull TravelerDto travelerDto) throws ParseException {
-        AccountDto accountDto = new AccountDto();
-        accountDto.setEmail(travelerDto.getEmail());
-        accountDto.setPassword(travelerDto.getPassword());
-        accountDto.setRole("Traveler");
-        boolean response =
-                Objects.equals(Boolean.TRUE, restTemplate.postForObject("http://localhost:9001/accounts/create", accountDto, Boolean.class));
-        if(!response){
-            throw new AccountIsAvailableException(travelerDto.getEmail());
-        }
-        Traveler traveler = new Traveler();
-        traveler.setFirstName(travelerDto.getFirstName());
-        traveler.setLastName(travelerDto.getLastName());
-        traveler.setEmail(travelerDto.getEmail());
-        traveler.setDateOfBirth(stringToDate(travelerDto.getDateOfBirth()));
-        traveler.setCountry(travelerDto.getCountry());
-        traveler.setProfilePicture(travelerDto.getProfilePicture());
+        Traveler traveler = Traveler.builder()
+                .firstName(travelerDto.getFirstName())
+                .lastName(travelerDto.getLastName())
+                .email(travelerDto.getEmail())
+                .dateOfBirth(stringToDate(travelerDto.getDateOfBirth()))
+                .country(travelerDto.getCountry())
+                .profilePicture(travelerDto.getProfilePicture())
+                .build();
         return travelerRepository.save(traveler);
     }
 
@@ -72,7 +62,7 @@ public class TravelerServiceImpl implements TravelerService {
 
     @Override
     public Traveler getTraveller(String email) {
-        return travelerRepository.findTravellerByEmail(email);
+        return travelerRepository.findTravellerByEmail(email).orElseThrow();
     }
 
     @Override

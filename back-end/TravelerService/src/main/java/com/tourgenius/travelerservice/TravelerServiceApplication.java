@@ -12,8 +12,4 @@ public class TravelerServiceApplication {
         SpringApplication.run(TravelerServiceApplication.class, args);
     }
 
-    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
 }

@@ -1,14 +1,16 @@
 package com.tourgenius.accountservice.service;
 
 import com.tourgenius.accountservice.dto.AccountDto;
-import com.tourgenius.accountservice.dto.AuthResponse;
 import com.tourgenius.accountservice.model.Account;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface AccountService {
 
-    AuthResponse createAccount(AccountDto accountDto);
-    AuthResponse authenticate(AccountDto accountDto);
+    ResponseEntity<String> createAccount(AccountDto accountDto);
+    ResponseEntity<String> authenticate(AccountDto accountDto);
     Account changePassword(AccountDto accountDto);
     boolean deleteAccount(String email);
-    String encrypt(String plainText);
+    ResponseEntity<String> refreshToken(HttpServletRequest request, HttpServletResponse response);
 }

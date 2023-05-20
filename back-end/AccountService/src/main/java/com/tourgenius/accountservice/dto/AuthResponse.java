@@ -11,5 +11,6 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class AuthResponse {
 
-    private String jwtToken;
+    private String accessToken;
+    private String refreshToken;
 }

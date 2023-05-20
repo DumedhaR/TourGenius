@@ -1,6 +1,7 @@
 package com.tourgenius.travelerservice.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -8,14 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
-
-@Document(collection = "Traveler")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Document(collection = "Traveler")
 public class Traveler {
     @Id
-    private String userId;
+    private String travelerId;
     @Field(name = "firstName")
     private String firstName;
     @Field(name = "lastName")
@@ -28,5 +29,4 @@ public class Traveler {
     private String country;
     @Field(name = "profilePicture")
     private byte[] profilePicture;
-
 }
