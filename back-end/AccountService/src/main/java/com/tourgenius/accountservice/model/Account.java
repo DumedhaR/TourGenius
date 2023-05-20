@@ -27,11 +27,11 @@ public class Account implements UserDetails {
     @Field(name = "password")
     private String password;
     @Field(name = "role")
-    private Role role;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
