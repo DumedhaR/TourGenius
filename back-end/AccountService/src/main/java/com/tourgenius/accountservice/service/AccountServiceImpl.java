@@ -70,20 +70,10 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public ResponseEntity<String> refreshToken(@NotNull HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
+    public ResponseEntity<String> refreshToken(String refreshToken) {
         String userEmail;
         HttpHeaders responseHeaders = new HttpHeaders();
-        String refreshToken = null;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("accessToken")) {
-                    refreshToken = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        if(refreshToken == null){
+        if(refreshToken == null || jwtService.isTokenExpired(refreshToken)){
             throw new IllegalArgumentException("Refresh Token is invalid!");
         }
         userEmail = jwtService.extractUserName(refreshToken);

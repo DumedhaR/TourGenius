@@ -12,5 +12,5 @@ public interface AccountService {
     ResponseEntity<String> authenticate(AccountDto accountDto);
     Account changePassword(AccountDto accountDto);
     boolean deleteAccount(String email);
-    ResponseEntity<String> refreshToken(HttpServletRequest request, HttpServletResponse response);
+    ResponseEntity<String> refreshToken(String refreshToken);
 }

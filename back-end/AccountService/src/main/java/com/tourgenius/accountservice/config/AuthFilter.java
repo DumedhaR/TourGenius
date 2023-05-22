@@ -9,9 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -31,25 +33,23 @@ public class AuthFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        final String jwtAccessToken;
+        String jwtAccessToken = null;
         final String userEmail;
         Cookie[] cookies = request.getCookies();
-        Cookie accessTokenCookie = null;
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("accessToken")) {
-                    accessTokenCookie = cookie;
+                    jwtAccessToken = cookie.getValue();
                     break;
                 }
             }
         }
-        if(accessTokenCookie == null){
+        if(jwtAccessToken == null || jwtService.isTokenExpired(jwtAccessToken)){
             filterChain.doFilter(request, response);
             return;
         }
-        jwtAccessToken = accessTokenCookie.getValue();
         userEmail = jwtService.extractUserName(jwtAccessToken);
-        if(!userEmail.isEmpty() && !SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
+        if(!userEmail.isEmpty() && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
             if(jwtService.isTokenValid(jwtAccessToken, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

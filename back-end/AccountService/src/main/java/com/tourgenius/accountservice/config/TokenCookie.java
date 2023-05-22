@@ -10,7 +10,7 @@ public class TokenCookie {
 
     public HttpCookie createAccessTokenCookie(String token) {
         return ResponseCookie.from("accessToken", token)
-                .maxAge(60 * 60 * 1000)
+                .maxAge(60 * 60 )
                 .httpOnly(true)
                 .path("/")
                 .build();
@@ -18,7 +18,7 @@ public class TokenCookie {
 
     public HttpCookie createRefreshTokenCookie(String token) {
         return ResponseCookie.from("refreshToken", token)
-                .maxAge(60 * 60 * 24 * 1000)
+                .maxAge(60 * 60 * 24 )
                 .httpOnly(true)
                 .path("/")
                 .build();

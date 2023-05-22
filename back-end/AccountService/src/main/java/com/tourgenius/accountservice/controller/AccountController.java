@@ -68,11 +68,7 @@ public class AccountController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<String> refreshToken(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) {
-        return accountService.refreshToken(request, response);
+    public ResponseEntity<String> refreshAccessToken( @CookieValue(name = "refreshToken", required = false) String refreshToken) {
+        return accountService.refreshToken(refreshToken);
     }
-
 }
