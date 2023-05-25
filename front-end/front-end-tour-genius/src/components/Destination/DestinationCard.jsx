@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function DestinationCard({
   destinationName,
@@ -16,10 +17,21 @@ function DestinationCard({
   destinationDescription
 }) {
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
+
+  const navigateToDestination = () => {
+    navigate(`/destination/${destinationName}`);
+  };
   return (
     <div className="cardDestination">
       <Card sx={{ maxWidth: 345 }}>
-        <CardMedia component="img" alt={destinationName} height="200px" image={destinationImage} />
+        <CardMedia
+          component="img"
+          alt={destinationName}
+          height="200px"
+          image={destinationImage}
+          onClick={navigateToDestination}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {destinationName}
@@ -47,6 +59,9 @@ function DestinationCard({
           <CardActions>
             <Button size="small" onClick={() => setShowMore(!showMore)}>
               {!showMore ? 'show more' : 'show less'}
+            </Button>
+            <Button size="small" onClick={navigateToDestination}>
+              visit
             </Button>
           </CardActions>
         )}

@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register/Register';
 import HomePage from './pages/Home/Home';
+import DestinationPage from './pages/Destination/DestinationPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/signIn" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/destination/:destinationName" element={<DestinationPage />} />
           </Routes>
         </BrowserRouter>
       </div>
