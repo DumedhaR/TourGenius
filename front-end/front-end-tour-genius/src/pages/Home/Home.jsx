@@ -8,6 +8,8 @@ import FeedbackForm from '../../components/Feedback/FeedbackForm';
 import CommentsComponent from '../../components/Comments/CommentsComponent';
 import DestinationContainer from '../../components/Destination/DestinationConiner';
 import HotelContainer from '../../components/Hotel/HotelContainer';
+// This Hotel data file remove when components are intergrated
+import { HotelData } from '../../components/Hotel/hotelData';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -50,7 +52,11 @@ function HomePage() {
         <DestinationContainer />
       </div>
       <div className="hotelHome">
-        <HotelContainer />
+        <HotelContainer
+          topic="Meet our top clients"
+          description="explore best hotels, restaurant and spas in Sri Lanka"
+          hotelData={HotelData}
+        />
       </div>
       <div className="signup">
         <div className="signupImage"></div>
