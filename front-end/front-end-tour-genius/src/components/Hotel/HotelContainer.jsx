@@ -1,34 +1,32 @@
 import React from 'react';
 import '../../utils/hotelContainer.css';
-// This Hotel data file remove when components are intergrated
-import { HotelData } from './hotelData';
 import HotelCard from './HotelCard';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
-function HotelContainer() {
+function HotelContainer({ topic, description, hotelData }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [displayedCards, setDisplayedCards] = useState(HotelData.slice(0, 3));
+  const [displayedCards, setDisplayedCards] = useState(hotelData.slice(0, 3));
 
   const handleMoveLeft = () => {
-    const newIndex = activeIndex === 0 ? HotelData.length - 1 : activeIndex - 1;
-    const newDisplayedCards = HotelData.slice(newIndex, newIndex + 3);
+    const newIndex = activeIndex === 0 ? hotelData.length - 1 : activeIndex - 1;
+    const newDisplayedCards = hotelData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
 
   const handleMoveRight = () => {
-    const newIndex = activeIndex === HotelData.length - 1 ? 0 : activeIndex + 1;
-    const newDisplayedCards = HotelData.slice(newIndex, newIndex + 3);
+    const newIndex = activeIndex === hotelData.length - 1 ? 0 : activeIndex + 1;
+    const newDisplayedCards = hotelData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
   return (
     <div>
-      <h1 id="hotelTopic">Meet our top clients</h1>
-      <p id="hotelDescription">explore best hotels, restaurant and spas in Sri Lanka</p>
+      <h1 id="hotelTopic">{topic}</h1>
+      <p id="hotelDescription">{description}</p>
       <div className="containerHotel">
         <IconButton aria-label="left" size="large" onClick={handleMoveLeft}>
           <ArrowCircleLeftOutlinedIcon
