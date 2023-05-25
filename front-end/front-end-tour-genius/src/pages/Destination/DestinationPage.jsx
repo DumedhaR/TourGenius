@@ -23,21 +23,6 @@ function DestinationPage() {
   const mapRef = useRef(null);
   const nearHotelContainerRef = useRef(null);
 
-  const scrollButtons = [
-    <Button key="1-desScroll" onClick={scrollToNearSimilarDestination}>
-      Near by Places
-    </Button>,
-    <Button key="2-desScroll" onClick={scrollToNearSimilarDestination}>
-      Similar Places
-    </Button>,
-    <Button key="3-desScroll" onClick={scrollToMap}>
-      View in Map
-    </Button>,
-    <Button key="4-desScroll" onClick={scrollToNearHotelContainer}>
-      Where to Stay
-    </Button>
-  ];
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -57,6 +42,21 @@ function DestinationPage() {
       nearHotelContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const scrollButtons = [
+    <Button key="1-desScroll" onClick={scrollToNearSimilarDestination}>
+      Near by Places
+    </Button>,
+    <Button key="2-desScroll" onClick={scrollToNearSimilarDestination}>
+      Similar Places
+    </Button>,
+    <Button key="3-desScroll" onClick={scrollToMap}>
+      View in Map
+    </Button>,
+    <Button key="4-desScroll" onClick={scrollToNearHotelContainer}>
+      Where to Stay
+    </Button>
+  ];
   return (
     <div className="destinationPage">
       <div className="deNavigation">
