@@ -11,6 +11,7 @@ public interface RoomService {
     Room update(Room room);
     List<Room> findAll();
     Long delete(Room room);
+    Long countByType(String type);
 ;
 
 }

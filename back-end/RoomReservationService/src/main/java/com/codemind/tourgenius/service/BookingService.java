@@ -11,4 +11,5 @@ public interface BookingService {
     Booking update(Booking booking);
     List<Booking> findAll();
     Long delete(Booking booking);
+    List<Booking> findByUserId(Long id);
 }

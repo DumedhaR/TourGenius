@@ -24,6 +24,7 @@ public class RoomController {
         room.setSize(request.getSize());
         room.setRoomDesc(request.getRoomDesc());
         room.setType(request.getType());
+        room.setAvailability(request.getAvailability());
         roomService.create(room);
         return "room Added";
     }
@@ -36,6 +37,7 @@ public class RoomController {
         room.setSize(request.getSize());
         room.setRoomDesc(request.getRoomDesc());
         room.setType(request.getType());
+        room.setAvailability(request.getAvailability());
         roomService.update(room);
         return "room data Updated";
     }
@@ -52,6 +54,7 @@ public class RoomController {
             response.setSize(room.getSize());
             response.setRoomDesc(room.getRoomDesc());
             response.setType(room.getType());
+            response.setAvailability(room.getAvailability());
             roomSearchResponseList.add(response);
         }
 
@@ -67,7 +70,7 @@ public class RoomController {
         response.setSize(room.getSize());
         response.setRoomDesc(room.getRoomDesc());
         response.setType(room.getType());
-
+        room.setAvailability(room.getAvailability());
         return response;
     }
 
@@ -83,4 +86,10 @@ public class RoomController {
         return "room data not deleted";
 
     }
+
+    @GetMapping ("${app.endpoint.roomCountByType}")
+    public Long countByRoomType(@PathVariable("type") String type) {
+        return roomService.countByType(type);
+    }
+
 }
