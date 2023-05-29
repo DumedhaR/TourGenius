@@ -7,18 +7,19 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Client")
-public class Client {
+@Document(collection = "ClientProperty")
+public class Property {
     @Id
+    private String propertyId;
+    private String propertyName;
+    private String description;
+    private String type;
+    private List<MediaUtil> media;
     private String clientId;
-    private String organizationName;
-    private String firstName;
-    private String lastName;
-    private String contactNumber;
-    private String email;
-    private byte[] profilePicture;
 }

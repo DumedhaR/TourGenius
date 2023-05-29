@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientService{
    }
 
    @Override
-   public Client updateClient(ClientDto clientDto) {
+   public Client updateClient(@NotNull ClientDto clientDto) {
       Client current = getClient(clientDto.getEmail());
       if (clientDto.getFirstName() != null) {
          current.setFirstName(clientDto.getFirstName());

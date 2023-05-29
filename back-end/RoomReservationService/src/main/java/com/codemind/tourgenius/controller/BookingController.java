@@ -92,7 +92,7 @@ public class BookingController {
         return bookingSearchResponseList;
     }
 
-    @DeleteMapping ("${app.endpoint.bookingelete}")
+    @DeleteMapping ("${app.endpoint.bookingDelete}")
     public String deleteRoom(@PathVariable("id") String bookingId) {
         Booking booking= bookingService.findById(Long.valueOf(bookingId));
         if(booking!=null){
