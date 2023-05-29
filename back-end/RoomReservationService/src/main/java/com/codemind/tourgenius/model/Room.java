@@ -22,4 +22,6 @@ public class Room {
 
     private String roomDesc;
 
+    private Boolean availability;
+
 }

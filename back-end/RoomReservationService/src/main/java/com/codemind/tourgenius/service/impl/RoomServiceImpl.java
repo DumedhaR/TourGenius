@@ -40,4 +40,9 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.delete(room);
         return room.getId();
     }
+
+    @Override
+    public Long countByType(String type) {
+        return roomRepository.count2(type);
+    }
 }

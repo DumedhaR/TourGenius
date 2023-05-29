@@ -14,4 +14,6 @@ public class RoomSearchResponse {
     private Double price;
 
     private String roomDesc;
+
+    private Boolean availability;
 }

@@ -48,20 +48,10 @@ public class BookingController {
     public List<BookingSearchResponse> search() {
         List<BookingSearchResponse> bookingSearchResponseList =  new ArrayList<>();
         List<Booking> bookings = bookingService.findAll();
-        for(Booking booking :bookings){
-            BookingSearchResponse response = new BookingSearchResponse();
-            response.setId(booking.getId());
-            response.setCheckInDate(booking.getCheckInDate());
-            response.setCheckInTime(booking.getCheckInTime());
-            response.setCheckOutDate(booking.getCheckOutDate());
-            response.setCheckOutTime(booking.getCheckOutTime());
-            response.setUserId(booking.getUserId());
-            response.setRoomId(booking.getRoomId());
-            bookingSearchResponseList.add(response);
-        }
-
-        return bookingSearchResponseList;
+        return getBookingSearchResponses(bookingSearchResponseList, bookings);
     }
+
+
 
 
     @GetMapping ("${app.endpoint.bookingView}")
@@ -79,6 +69,29 @@ public class BookingController {
         return response;
     }
 
+    @GetMapping ("${app.endpoint.getBookingByUser}")
+    public List<BookingSearchResponse> getBookingByUserId(@PathVariable("userId") String userId) {
+        List<BookingSearchResponse> bookingSearchResponseList =  new ArrayList<>();
+        List<Booking> bookings = bookingService.findByUserId(Long.valueOf(userId));
+        return getBookingSearchResponses(bookingSearchResponseList, bookings);
+    }
+
+    private List<BookingSearchResponse> getBookingSearchResponses(List<BookingSearchResponse> bookingSearchResponseList, List<Booking> bookings) {
+        for(Booking booking :bookings){
+            BookingSearchResponse response = new BookingSearchResponse();
+            response.setId(booking.getId());
+            response.setCheckInDate(booking.getCheckInDate());
+            response.setCheckInTime(booking.getCheckInTime());
+            response.setCheckOutDate(booking.getCheckOutDate());
+            response.setCheckOutTime(booking.getCheckOutTime());
+            response.setUserId(booking.getUserId());
+            response.setRoomId(booking.getRoomId());
+            bookingSearchResponseList.add(response);
+        }
+
+        return bookingSearchResponseList;
+    }
+
     @DeleteMapping ("${app.endpoint.bookingelete}")
     public String deleteRoom(@PathVariable("id") String bookingId) {
         Booking booking= bookingService.findById(Long.valueOf(bookingId));
@@ -87,7 +100,6 @@ public class BookingController {
 
             return "booking data deleted ";
         }
-
         return "booking data not deleted";
 
     }

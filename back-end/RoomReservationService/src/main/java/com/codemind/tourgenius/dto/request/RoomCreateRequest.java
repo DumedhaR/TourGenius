@@ -15,4 +15,6 @@ public class RoomCreateRequest {
 
     private String roomDesc;
 
+    private Boolean availability;
+
 }
