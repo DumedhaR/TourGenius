@@ -1,0 +1,30 @@
+.hotelPackageCard {
+  width: 100%;
+  height: 275px;
+  display: flex;
+}
+.packageImage {
+  width: 25%;
+  height: 100%;
+}
+.packageContent {
+  width: 75%;
+  height: 275px;
+  display: flex;
+  padding: 30px 30px 30px 30px;
+  background-color: #e6ecfc;
+}
+.explainPackage {
+  width: 75%;
+}
+.packageInclude {
+  margin-top: 20px;
+}
+.bookPackage {
+  width: 25%;
+
+  text-align: right;
+}
+.packagePrize {
+  margin-top: 25px;
+}
