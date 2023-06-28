@@ -4,8 +4,6 @@ import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.model.Account;
 import com.tourgenius.accountservice.service.AccountService;
 import com.tourgenius.accountservice.service.JwtService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;

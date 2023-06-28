@@ -62,6 +62,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public boolean deleteAccount(String email) {
+        accountRepository.existsById();
         if(accountRepository.findAccountByEmail(email).isEmpty()){
             return false;
         }
