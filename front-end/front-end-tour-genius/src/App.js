@@ -5,6 +5,7 @@ import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register/Register';
 import HomePage from './pages/Home/Home';
 import DestinationPage from './pages/Destination/DestinationPage';
+import Payment from './pages/Payment/Payment';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/destination/:destinationName" element={<DestinationPage />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </BrowserRouter>
       </div>
