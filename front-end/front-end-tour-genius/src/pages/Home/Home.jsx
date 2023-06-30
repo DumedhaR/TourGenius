@@ -6,10 +6,11 @@ import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import FeedbackForm from '../../components/Feedback/FeedbackForm';
 import CommentsComponent from '../../components/Comments/CommentsComponent';
-import DestinationContainer from '../../components/Destination/DestinationConiner';
 import HotelContainer from '../../components/Hotel/HotelContainer';
 // This Hotel data file remove when components are intergrated
 import { HotelData } from '../../components/Hotel/hotelData';
+import MainDestinationContainer from '../../components/MainDestination/MainDestinationContainer';
+import DestinationContainer from '../../components/Destination/DestinationConiner';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -45,9 +46,9 @@ function HomePage() {
           </Button>
         </div>
       </div>
-
-      {/* destination filter have to add*/}
-
+      <div className="destinationFilter">
+        <MainDestinationContainer />
+      </div>
       <div className="destinationHome">
         <DestinationContainer />
       </div>
