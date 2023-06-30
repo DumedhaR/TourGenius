@@ -18,6 +18,7 @@ import * as Yup from 'yup';
 import UserReviews from '../../components/Reviews/ReviewFeedbacks';
 import GoogleLocation from '../../components/Location/Location';
 import Footer from '../../components/Footer/Footer';
+import { useEffect } from 'react';
 
 function HotelPage() {
   const validationSchema = Yup.object().shape({
@@ -42,6 +43,11 @@ function HotelPage() {
       console.log(values);
     }
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="hotelPage">
       <div className="hotelNavigation">
@@ -187,7 +193,7 @@ function HotelPage() {
           </div>
         </div>
       </div>
-      <div className="hotelFooter" style={{ backgroundColor: '#00cc00' }}>
+      <div className="hotelFooter">
         <Footer />
       </div>
     </div>
