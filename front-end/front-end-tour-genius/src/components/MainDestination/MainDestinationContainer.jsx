@@ -7,7 +7,7 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import { TextField, MenuItem, FormControl, Select, InputLabel } from '@mui/material';
+import { TextField, MenuItem, FormControl, Select } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import '../../utils/mainDestinationContainer.css';
 
@@ -50,28 +50,30 @@ function MainDestinationContainer() {
   return (
     <div className="mainFilter">
       <div className="searchBarContainer">
-          <FormControl sx={{ minWidth: 120, marginRight: '16px' }}>
-            <InputLabel id="search-category-label">Search Category</InputLabel>
-            <Select
-              labelId="search-category-label"
-              id="search-category"
-              value={searchCategory}
-              onChange={handleSearchCategoryChange}
-            >
-              <MenuItem value="destinationName">Destination Name</MenuItem>
-              <MenuItem value="destinationCountry">Destination Country</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField
-            id="search-value"
-            label="Search Value"
-            value={searchValue}
-            onChange={handleSearchValueChange}
-          />
-          <IconButton aria-label="search" onClick={handleFilter}>
-            <SearchIcon />
-          </IconButton>
-        </div>
+        <FormControl sx={{ minWidth: 120, marginRight: '16px' }} variant="outlined">
+          <Select
+            labelId="search-category-label"
+            id="search-category"
+            value={searchCategory}
+            onChange={handleSearchCategoryChange}
+            className="searchSelect">
+            <MenuItem value="destinationName">Destination Name</MenuItem>
+            <MenuItem value="destinationCountry">Destination Country</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField
+          id="search-value"
+          label="Search"
+          value={searchValue}
+          onChange={handleSearchValueChange}
+          variant="outlined"
+          className="searchTextField"
+        />
+        <IconButton aria-label="search" onClick={handleFilter} className="searchButton">
+          <SearchIcon />
+        </IconButton>
+      </div>
+
       <div className="containerDestination">
         <IconButton aria-label="left" size="large" onClick={handleMoveLeft}>
           <ArrowCircleLeftOutlinedIcon
@@ -85,16 +87,16 @@ function MainDestinationContainer() {
             fontSize="inherit"
           />
         </IconButton>
-        {displayedCards.map((element,index)=>{
-          return(
+        {displayedCards.map((element, index) => {
+          return (
             <div key={`mainDesFilter-${index}`}>
-            <MainDestinationCard
-              destinationName={element.destinationName}
-              destinationImage={element.destinationImage}
-              destinationCountry={element.destinationCountry}
-            />
-          </div>
-          )
+              <MainDestinationCard
+                destinationName={element.destinationName}
+                destinationImage={element.destinationImage}
+                destinationCountry={element.destinationCountry}
+              />
+            </div>
+          );
         })}
         <IconButton aria-label="left" size="large" onClick={handleMoveRight}>
           <ArrowCircleRightOutlinedIcon
