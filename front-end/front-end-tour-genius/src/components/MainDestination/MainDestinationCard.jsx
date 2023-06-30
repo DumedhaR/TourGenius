@@ -13,7 +13,7 @@ function MainDestination({ destinationName, destinationImage, destinationCountry
   };
   return (
     <div className="cardDestination">
-      <Card sx={{ maxWidth: 345 }} onClick={navigateToDestination}  >
+      <Card sx={{ maxWidth: 345 }} onClick={navigateToDestination}>
         <CardMedia component="img" alt={destinationName} height="200px" image={destinationImage} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

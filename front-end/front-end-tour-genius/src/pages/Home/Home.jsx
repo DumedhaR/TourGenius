@@ -47,10 +47,10 @@ function HomePage() {
         </div>
       </div>
       <div className="destinationFilter">
-        <MainDestinationContainer/>
+        <MainDestinationContainer />
       </div>
       <div className="destinationHome">
-        <DestinationContainer/>
+        <DestinationContainer />
       </div>
       <div className="hotelHome">
         <HotelContainer
