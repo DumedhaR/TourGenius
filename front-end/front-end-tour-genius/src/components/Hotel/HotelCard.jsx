@@ -21,7 +21,7 @@ function HotelCard({
   const navigate = useNavigate();
 
   const navigateToHotel = () => {
-    navigate();
+    navigate(`/hotel/${hotelName}`);
   };
   return (
     <div className="cardHotel">
