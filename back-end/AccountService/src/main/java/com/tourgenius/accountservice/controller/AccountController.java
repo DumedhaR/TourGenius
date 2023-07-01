@@ -36,8 +36,7 @@ public class AccountController {
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Account changePassword(
-            @CookieValue(name = "accessToken", required = false) String accessToken,
-            @CookieValue(name = "refreshToken", required = false) String refreshToken,
+
             @RequestBody @NotNull AccountDto accountDto){
         return accountService.changePassword(accountDto);
     }
