@@ -7,7 +7,7 @@ import HomePage from './pages/Home/Home';
 import DestinationPage from './pages/Destination/DestinationPage';
 import Payment from './pages/Payment/Payment';
 import HotelPage from './pages/Hotel/HotelPage';
-
+import Reservation from './pages/Reservation/ReservationPage';
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             <Route path="/destination/:destinationName" element={<DestinationPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/hotel/:hotelName" element={<HotelPage />} />
+            <Route path="/reservation/:packageName" element={<Reservation />} />
           </Routes>
         </BrowserRouter>
       </div>

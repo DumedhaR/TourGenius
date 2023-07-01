@@ -19,7 +19,7 @@ export const PackageData = [
     packageImage: hotelPackageImage,
     packagePrize: 100,
     packageInclude: ['1 large bed', '1 bath room', 'Per Night', '2 adults'],
-    availableRooms: 2
+    availableRooms: 0
   },
   {
     packageName: 'Package Name',
