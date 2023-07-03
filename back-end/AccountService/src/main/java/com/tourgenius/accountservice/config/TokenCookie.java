@@ -1,12 +1,13 @@
 package com.tourgenius.accountservice.config;
 
-import jakarta.servlet.http.Cookie;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TokenCookie {
+
+    private final String value = "not";
 
     public HttpCookie createAccessTokenCookie(String token) {
         return ResponseCookie.from("accessToken", token)

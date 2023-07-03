@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface AccountRepository extends MongoRepository <Account, String> {
     Optional <Account> findAccountByEmail(String email);
     void deleteAccountByEmail(String email);
-
 }

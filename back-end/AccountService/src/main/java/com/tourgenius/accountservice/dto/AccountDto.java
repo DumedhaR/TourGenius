@@ -1,5 +1,6 @@
 package com.tourgenius.accountservice.dto;
 
+import com.tourgenius.accountservice.model.Role;
 import lombok.*;
 
 @Data
@@ -10,5 +11,5 @@ public class AccountDto {
 
     private String email;
     private String password;
-    private String role;
+    private Role role;
 }
