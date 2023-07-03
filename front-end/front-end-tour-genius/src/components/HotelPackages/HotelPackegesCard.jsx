@@ -3,6 +3,7 @@ import '../../utils/hotelPackageCard.css';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function PackagesCard({
   packageImage,
@@ -13,6 +14,10 @@ function PackagesCard({
   availableRooms,
   packagePrize
 }) {
+  const navigate = useNavigate();
+  const navigatetoReservation = () => {
+    navigate(`/reservation/${packageName}`);
+  };
   return (
     <div className="hotelPackageCard">
       <div className="packageImage">
@@ -71,7 +76,9 @@ function PackagesCard({
               },
               textTransform: 'none'
             }}
-            variant="contained">
+            variant="contained"
+            onClick={navigatetoReservation}
+            disabled={availableRooms === 0}>
             Book Now
           </Button>
         </div>
