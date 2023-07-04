@@ -1,10 +1,13 @@
 package com.tourgenius.accountservice.service;
 
 import com.tourgenius.accountservice.dto.TravelerDto;
+import com.tourgenius.accountservice.model.Account;
 import com.tourgenius.accountservice.model.Traveler;
+import com.tourgenius.accountservice.repository.AccountRepository;
 import com.tourgenius.accountservice.repository.TravelerRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -16,10 +19,15 @@ import java.util.Date;
 public class TravelerServiceImpl implements TravelerService {
 
     private final TravelerRepository travelerRepository;
+
+    private final AccountRepository accountRepository;
     private final JwtService jwtService;
+    private final AccountService accountService;
+
 
     @Override
-    public Traveler createTraveller(@NotNull TravelerDto travelerDto) throws ParseException {
+    public ResponseEntity<String> createTraveller(@NotNull TravelerDto travelerDto) throws ParseException {
+        Account account = accountRepository.findAccountByEmail(travelerDto.getEmail()).orElseThrow();
         Traveler traveler = Traveler.builder()
                 .firstName(travelerDto.getFirstName())
                 .lastName(travelerDto.getLastName())
@@ -28,7 +36,8 @@ public class TravelerServiceImpl implements TravelerService {
                 .country(travelerDto.getCountry())
                 .profilePicture(travelerDto.getProfilePicture())
                 .build();
-        return travelerRepository.save(traveler);
+        travelerRepository.save(traveler);
+        return ResponseEntity.ok().headers(accountService.setTokenCookies(account)).body("created");
     }
 
     @Override

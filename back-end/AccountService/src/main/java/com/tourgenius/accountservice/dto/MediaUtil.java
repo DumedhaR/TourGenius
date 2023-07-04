@@ -1,4 +1,4 @@
-package com.tourgenius.accountservice.model;
+package com.tourgenius.accountservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MediaUtil {
     private String name;
-    private String type;
     private byte[] file;
 }

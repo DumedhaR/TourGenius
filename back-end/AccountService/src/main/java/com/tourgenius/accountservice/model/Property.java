@@ -1,5 +1,6 @@
 package com.tourgenius.accountservice.model;
 
+import com.tourgenius.accountservice.dto.MediaUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

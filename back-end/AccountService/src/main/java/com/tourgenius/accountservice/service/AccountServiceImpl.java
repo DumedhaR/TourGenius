@@ -40,7 +40,7 @@ public class AccountServiceImpl implements AccountService{
                     .role(accountDto.getRole() == null ? Role.Traveler : accountDto.getRole())
                     .build();
             accountRepository.save(account);
-            return ResponseEntity.ok().headers(setTokenCookies(account)).body("created");
+            return ResponseEntity.ok().body("created");
         }
         throw new IllegalArgumentException("email already used!");
     }
@@ -116,8 +116,8 @@ public class AccountServiceImpl implements AccountService{
         return ResponseEntity.badRequest().body("No account found");
     }
 
-
-    private  HttpHeaders setTokenCookies(Account account) {
+    @Override
+    public HttpHeaders setTokenCookies(Account account) {
         HttpHeaders responseHeaders = new HttpHeaders();
         String newAccessToken = jwtService.generateToken(account,60 * 60 * 1000);
         String newRefreshToken = jwtService.generateToken(account,60 * 60 * 1000 * 24);

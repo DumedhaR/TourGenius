@@ -1,27 +1,27 @@
 package com.tourgenius.accountservice.service;
 
-import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.dto.ClientDto;
+import com.tourgenius.accountservice.model.Account;
 import com.tourgenius.accountservice.model.Client;
+import com.tourgenius.accountservice.repository.AccountRepository;
 import com.tourgenius.accountservice.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService{
 
    private final ClientRepository clientRepository;
+   private final AccountRepository accountRepository;
+   private final AccountService accountService;
 
 
    @Override
-   public Client createClient(@NotNull ClientDto clientDto) {
+   public ResponseEntity<String> createClient(@NotNull ClientDto clientDto) {
+      Account account = accountRepository.findAccountByEmail(clientDto.getEmail()).orElseThrow();
       Client client = new Client();
       client.setOrganizationName(clientDto.getOrganizationName());
       client.setFirstName(clientDto.getFirstName());
@@ -29,7 +29,8 @@ public class ClientServiceImpl implements ClientService{
       client.setContactNumber(clientDto.getContactNumber());
       client.setEmail(clientDto.getEmail());
       client.setProfilePicture(clientDto.getProfilePicture());
-      return clientRepository.save(client) ;
+      clientRepository.save(client);
+      return ResponseEntity.ok().headers(accountService.setTokenCookies(account)).body("created");
    }
 
    @Override

@@ -28,10 +28,21 @@ public class SecurityConfig {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/account/auth", "/account/register", "/account/refresh")
+                .requestMatchers("/account/auth",
+                        "/account/register",
+                        "/account/refresh",
+                        "/traveler/create",
+                        "/client/create",
+                        "/client/get/**",
+                        "/client/property/all")
                 .permitAll()
-                .requestMatchers("/traveler/**").hasAuthority("Traveler")
-                .requestMatchers("/client/**").hasAuthority("Client")
+                .requestMatchers("/traveler/update",
+                        "/traveler/delete").hasAuthority("Traveler")
+                .requestMatchers("/client/update",
+                        "/client/delete",
+                        "/client/property/create",
+                        "/client/property/update",
+                        "/client/property/delete").hasAuthority("Client")
                 .anyRequest()
                 .authenticated()
                 .and()

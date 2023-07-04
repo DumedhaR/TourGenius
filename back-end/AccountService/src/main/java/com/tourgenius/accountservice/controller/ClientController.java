@@ -7,6 +7,7 @@ import com.tourgenius.accountservice.model.Property;
 import com.tourgenius.accountservice.service.ClientService;
 import com.tourgenius.accountservice.service.PropertyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,7 @@ public class ClientController {
     private final PropertyService propertyService;
 
     @PostMapping("/create")
-    public Client createClient(@RequestBody ClientDto clientDto){
-
+    public ResponseEntity<String> createClient(@RequestBody ClientDto clientDto){
         return clientService.createClient(clientDto);
     }
     @PutMapping("/update")
@@ -33,7 +33,7 @@ public class ClientController {
     public boolean deleteClient(@PathVariable String email){
         return clientService.deleteClient(email);
     }
-    @GetMapping("/{email}")
+    @GetMapping("/get/{email}")
     public Client getClient(@PathVariable String email){
         return clientService.getClient(email);
     }

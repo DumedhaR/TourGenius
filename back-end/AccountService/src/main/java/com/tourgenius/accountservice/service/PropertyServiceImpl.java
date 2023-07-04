@@ -1,7 +1,7 @@
 package com.tourgenius.accountservice.service;
 
 import com.tourgenius.accountservice.dto.PropertyDto;
-import com.tourgenius.accountservice.model.MediaUtil;
+import com.tourgenius.accountservice.dto.MediaUtil;
 import com.tourgenius.accountservice.model.Property;
 import com.tourgenius.accountservice.repository.PropertyRepository;
 import lombok.RequiredArgsConstructor;

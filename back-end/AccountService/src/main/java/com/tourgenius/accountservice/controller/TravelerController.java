@@ -4,6 +4,7 @@ import com.tourgenius.accountservice.dto.TravelerDto;
 import com.tourgenius.accountservice.model.Traveler;
 import com.tourgenius.accountservice.service.TravelerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -16,7 +17,7 @@ public class TravelerController {
     private final TravelerService travelerService;
 
     @PostMapping("/create")
-    public Traveler createTraveller(@RequestBody TravelerDto travelerDto) throws ParseException {
+    public ResponseEntity<String> createTraveller(@RequestBody TravelerDto travelerDto) throws ParseException {
         return travelerService.createTraveller(travelerDto);
     }
 
