@@ -18,7 +18,7 @@ const theme = createTheme({
   }
 });
 
-function AccountGreet({ firstName, lastName, profilePicture }) {
+function AccountHeader({ firstName, lastName, profilePicture }) {
   const handleEditProfile = () => {};
   return (
     <div className="user-details">
@@ -41,4 +41,4 @@ function AccountGreet({ firstName, lastName, profilePicture }) {
     </div>
   );
 }
-export default AccountGreet;
+export default AccountHeader;

@@ -8,6 +8,7 @@ import DestinationPage from './pages/Destination/DestinationPage';
 import Payment from './pages/Payment/Payment';
 import HotelPage from './pages/Hotel/HotelPage';
 import Reservation from './pages/Reservation/ReservationPage';
+import TravelerAccountPage from './pages/Account/TravelerAccountPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/hotel/:hotelName" element={<HotelPage />} />
             <Route path="/reservation/:packageName" element={<Reservation />} />
+            <Route path="/account/traveler" element={<TravelerAccountPage />} />
           </Routes>
         </BrowserRouter>
       </div>

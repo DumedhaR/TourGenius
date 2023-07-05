@@ -39,7 +39,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+function AccountTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -70,7 +70,7 @@ export default function BasicTabs() {
             textColor="secondary"
             indicatorColor="secondary">
             <Tab label="Bookings" {...a11yProps(0)} />
-            <Tab label="Feedbacks" {...a11yProps(1)} />
+            <Tab label="Comments" {...a11yProps(1)} />
             <Tab label="Payements" {...a11yProps(2)} />
           </Tabs>
         </Box>
@@ -83,3 +83,4 @@ export default function BasicTabs() {
     </Box>
   );
 }
+export default AccountTabs;
