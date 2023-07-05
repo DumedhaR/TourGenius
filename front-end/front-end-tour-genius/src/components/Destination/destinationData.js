@@ -12,7 +12,7 @@ export const DestinationData = [
   {
     destinationName: 'Unawatuna',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/unawatuna.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
@@ -20,7 +20,7 @@ export const DestinationData = [
   {
     destinationName: 'Sigiriya',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/sigiriya.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
@@ -28,7 +28,7 @@ export const DestinationData = [
   {
     destinationName: 'Udawalawa',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/udawalawe.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
@@ -36,7 +36,7 @@ export const DestinationData = [
   {
     destinationName: 'Kumana',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/kumana.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
@@ -44,7 +44,7 @@ export const DestinationData = [
   {
     destinationName: 'Arugambe',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/arugambe.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
@@ -52,7 +52,7 @@ export const DestinationData = [
   {
     destinationName: 'Nilaweli',
     destinationCountry: 'Sri Lanka',
-    destinationImage: 'images/destination1.png',
+    destinationImage: 'images/nilaweli.png',
     destinationDescription:
       'Sri Lanka is well known for its rich Buddhist culture as well as other religions. Being a religious country, Sri Lanka has many places with religious and historic significance, which attract tourists from all over the world.',
     destinationRating: 3.5
