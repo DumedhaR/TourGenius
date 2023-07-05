@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../utils/destinationContainer.css';
 // This Destination data file remove when components are intergrated
-import { MainDestinationData } from './mainDestinationData';
-import MainDestinationCard from './MainDestinationCard';
+import { DestinationData } from '../Destination/destinationData';
+import DestinationCard from '../Destination/DestinationCard';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
@@ -13,20 +13,32 @@ import '../../utils/mainDestinationContainer.css';
 
 function MainDestinationContainer() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [displayedCards, setDisplayedCards] = useState(MainDestinationData.slice(0, 3));
+  const [displayedCards, setDisplayedCards] = useState(DestinationData.slice(0, 3));
   const [searchCategory, setSearchCategory] = useState('destinationName');
   const [searchValue, setSearchValue] = useState('');
 
+  const displayedCardElements = displayedCards.map((element, index) => (
+    <div key={`mainDesFilter-${index}`}>
+      <DestinationCard
+        destinationName={element.destinationName}
+        destinationImage={element.destinationImage}
+        destinationRating={element.destinationRating}
+        destinationCountry={element.destinationCountry}
+        destinationDescription={element.destinationDescription}
+      />
+    </div>
+  ));
+
   const handleMoveLeft = () => {
-    const newIndex = activeIndex === 0 ? MainDestinationData.length - 1 : activeIndex - 1;
-    const newDisplayedCards = MainDestinationData.slice(newIndex, newIndex + 3);
+    const newIndex = activeIndex === 0 ? DestinationData.length - 1 : activeIndex - 1;
+    const newDisplayedCards = DestinationData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
 
   const handleMoveRight = () => {
-    const newIndex = activeIndex === MainDestinationData.length - 1 ? 0 : activeIndex + 1;
-    const newDisplayedCards = MainDestinationData.slice(newIndex, newIndex + 3);
+    const newIndex = activeIndex === DestinationData.length - 1 ? 0 : activeIndex + 1;
+    const newDisplayedCards = DestinationData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
@@ -40,7 +52,7 @@ function MainDestinationContainer() {
   };
 
   const handleFilter = () => {
-    const filteredData = MainDestinationData.filter((destination) =>
+    const filteredData = DestinationData.filter((destination) =>
       destination[searchCategory].toLowerCase().includes(searchValue.toLowerCase())
     );
     setDisplayedCards(filteredData.slice(0, 3));
@@ -87,17 +99,7 @@ function MainDestinationContainer() {
             fontSize="inherit"
           />
         </IconButton>
-        {displayedCards.map((element, index) => {
-          return (
-            <div key={`mainDesFilter-${index}`}>
-              <MainDestinationCard
-                destinationName={element.destinationName}
-                destinationImage={element.destinationImage}
-                destinationCountry={element.destinationCountry}
-              />
-            </div>
-          );
-        })}
+        {displayedCardElements}
         <IconButton aria-label="left" size="large" onClick={handleMoveRight}>
           <ArrowCircleRightOutlinedIcon
             sx={{
