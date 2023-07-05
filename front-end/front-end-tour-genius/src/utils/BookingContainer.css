@@ -1,11 +1,15 @@
 #Topic{
   font-weight:bold;
-  font-size: 1.1em;
+  font-size: 1.2em;
   margin-top: 15px;
 }
-  .containerBooking {
+.containerBooking {
     display: flex;
     justify-content: space-between;
-    margin-top: 40px;
-  }
+    margin-top: 50px;
+}
+.tabBody{
+  background-color: #e6ecfc;
+  padding-bottom: 60px;
+}
   

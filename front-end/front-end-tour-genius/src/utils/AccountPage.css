@@ -1,5 +1,8 @@
 .travelerPage {
     width: 100%;
     height: fit-content;
+   
   }
-  
+  .pageBody{
+    background-color: #e6ecfc;
+  }

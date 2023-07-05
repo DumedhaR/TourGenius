@@ -1,10 +1,10 @@
 import React from 'react';
 import NavigationBar from '../../components/Navigation/NavigationBar';
-import '../../utils/destinationPage.css';
+import '../../utils/AccountPage.css';
 // This DataFiles are removed when components are intergrated
 import Footer from '../../components/Footer/Footer';
-import AccountHeader from '../../components/Account/AccountHeader';
-import AccountTabs from '../../components/Account/AccountTabs';
+import AccountHeader from '../../components/TravelerAccount/AccountHeader';
+import AccountTabs from '../../components/TravelerAccount/AccountTabs';
 import { AccountData } from './AccountData';
 
 function TravelerAccountPage() {
@@ -23,7 +23,7 @@ function TravelerAccountPage() {
       <div className="accountTabs">
         <AccountTabs />
       </div>
-      <div className="TravelerFooter">
+      <div className="travelerFooter">
         <Footer />
       </div>
     </div>

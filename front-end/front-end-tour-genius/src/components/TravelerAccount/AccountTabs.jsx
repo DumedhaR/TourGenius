@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BookingContainer from './BookingContainer';
+import '../../utils/BookingContainer.css';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -71,15 +72,22 @@ function AccountTabs() {
             indicatorColor="secondary">
             <Tab label="Bookings" {...a11yProps(0)} />
             <Tab label="Comments" {...a11yProps(1)} />
-            <Tab label="Payements" {...a11yProps(2)} />
+            <Tab label="Payments" {...a11yProps(2)} />
           </Tabs>
         </Box>
       </ThemeProvider>
-      <CustomTabPanel value={value} index={0}>
-        <BookingContainer />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}></CustomTabPanel>
-      <CustomTabPanel value={value} index={2}></CustomTabPanel>
+
+      <div className="tabBody">
+        <CustomTabPanel value={value} index={0}>
+          <BookingContainer />
+        </CustomTabPanel>
+      </div>
+      <div className="tabBody">
+        <CustomTabPanel value={value} index={1}></CustomTabPanel>
+      </div>
+      <div className="tabBody">
+        <CustomTabPanel value={value} index={2}></CustomTabPanel>
+      </div>
     </Box>
   );
 }

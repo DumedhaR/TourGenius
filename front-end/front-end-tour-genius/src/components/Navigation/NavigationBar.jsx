@@ -27,7 +27,7 @@ function Navigation() {
     }
   };
   const navigateToProfile = () => {
-    navigate('/userProfile');
+    navigate('/account/traveler');
   };
   return (
     <div className="navBar">

@@ -26,8 +26,7 @@ function BookingContainer() {
     setActiveIndex(newIndex);
   };
   return (
-    <div>
-      <div id="Topic">Upcoming Bookings</div>
+    <div className="body">
       <div className="containerBooking">
         <IconButton aria-label="left" size="large" onClick={handleMoveLeft}>
           <ArrowCircleLeftOutlinedIcon
