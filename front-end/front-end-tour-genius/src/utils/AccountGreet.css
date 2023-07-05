@@ -1,0 +1,30 @@
+.user-details {
+    background-color: #4DA343;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    margin-right: 25px;
+  }
+  
+  .greet-message {
+    flex-grow: 1;
+    color: white;
+  }
+  
+  .header1 {
+    font-weight:bold;
+    font-size: 1.4em;
+  }
+  .edit-profile {
+    background-color: white;
+    color: #4DA343;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: auto;
+  }
