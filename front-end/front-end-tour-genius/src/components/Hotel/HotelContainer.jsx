@@ -11,14 +11,14 @@ function HotelContainer({ topic, description, hotelData }) {
   const [displayedCards, setDisplayedCards] = useState(hotelData.slice(0, 3));
 
   const handleMoveLeft = () => {
-    const newIndex = activeIndex === 0 ? hotelData.length - 1 : activeIndex - 1;
+    const newIndex = activeIndex - 1 < 0 ? 0 : activeIndex - 1;
     const newDisplayedCards = hotelData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
 
   const handleMoveRight = () => {
-    const newIndex = activeIndex === hotelData.length - 1 ? 0 : activeIndex + 1;
+    const newIndex = activeIndex + 1 > hotelData.length - 3 ? activeIndex : activeIndex + 1;
     const newDisplayedCards = hotelData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);

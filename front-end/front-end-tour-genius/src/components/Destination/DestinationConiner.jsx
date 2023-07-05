@@ -13,18 +13,19 @@ function DestinationContainer() {
   const [displayedCards, setDisplayedCards] = useState(DestinationData.slice(0, 3));
 
   const handleMoveLeft = () => {
-    const newIndex = activeIndex === 0 ? DestinationData.length - 1 : activeIndex - 1;
+    const newIndex = activeIndex - 1 < 0 ? 0 : activeIndex - 1;
     const newDisplayedCards = DestinationData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
 
   const handleMoveRight = () => {
-    const newIndex = activeIndex === DestinationData.length - 1 ? 0 : activeIndex + 1;
+    const newIndex = activeIndex + 1 > DestinationData.length - 3 ? activeIndex : activeIndex + 1;
     const newDisplayedCards = DestinationData.slice(newIndex, newIndex + 3);
     setDisplayedCards(newDisplayedCards);
     setActiveIndex(newIndex);
   };
+
   return (
     <div>
       <h1 id="desTopic">Top destinations in Sri Lanka</h1>
