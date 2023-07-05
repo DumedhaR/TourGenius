@@ -9,7 +9,7 @@ import { AccountData } from './AccountData';
 
 function TravelerAccountPage() {
   return (
-    <div className="travelerPage">
+    <div className="accountPage">
       <div className="travelerNavigation">
         <NavigationBar />
       </div>
