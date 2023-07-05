@@ -9,7 +9,8 @@ import DestinationDashboard from './pages/DestinationDashboard/DestinationDashbo
 import Payment from './pages/Payment/Payment';
 import HotelPage from './pages/Hotel/HotelPage';
 import Reservation from './pages/Reservation/ReservationPage';
-import TravelerAccountPage from './pages/Account/TravelerAccountPage';
+import TravelerAccountPage from './pages/TravelerAccount/TravelerAccountPage';
+import ClientAccountPage from './pages/ClientAccount/ClientAccountPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/hotel/:hotelName" element={<HotelPage />} />
             <Route path="/reservation/:packageName" element={<Reservation />} />
             <Route path="/account/traveler" element={<TravelerAccountPage />} />
+            <Route path="/account/client" element={<ClientAccountPage />} />
           </Routes>
         </BrowserRouter>
       </div>
