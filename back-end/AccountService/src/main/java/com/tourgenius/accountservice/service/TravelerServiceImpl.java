@@ -19,7 +19,6 @@ import java.util.Date;
 public class TravelerServiceImpl implements TravelerService {
 
     private final TravelerRepository travelerRepository;
-
     private final AccountRepository accountRepository;
     private final JwtService jwtService;
     private final AccountService accountService;
