@@ -66,6 +66,7 @@ function MainDestinationContainer() {
           <Select
             labelId="search-category-label"
             id="search-category"
+            size="small"
             value={searchCategory}
             onChange={handleSearchCategoryChange}
             className="searchSelect">
@@ -76,6 +77,7 @@ function MainDestinationContainer() {
         <TextField
           id="search-value"
           label="Search"
+          size="small"
           value={searchValue}
           onChange={handleSearchValueChange}
           variant="outlined"
