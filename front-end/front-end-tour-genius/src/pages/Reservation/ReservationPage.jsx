@@ -1,34 +1,24 @@
-// This page is completed during the merge of the FE and BE integaration
 import React from 'react';
-import '../../utils/reservationPage.css';
-import Typography from '@mui/material/Typography';
+import NavigationBar from '../../components/Navigation/NavigationBar';
 import Footer from '../../components/Footer/Footer';
+import Reservation from '../../components/Reservation/Reservation';
+import { ReservationData } from './ReservationData';
 
-function Reservation() {
+function ReservationPage() {
   return (
-    <div>
-      <div className="reservationHeader">
-        <Typography
-          sx={{ color: 'white', textAlign: 'center', marginTop: '50px' }}
-          variant="h4"
-          gutterBottom>
-          Finalize Your Reservation
-          <br />
-          Here!
-        </Typography>
+    <div className="reservationPage">
+      <div className="reserNavigation">
+        <NavigationBar />
       </div>
-      <div className="reservationContainer">
-        <div className="reservationDetails">
-          <div className="bookingDetails">
-            <Typography variant="h5" gutterBottom>
-              Booking Details
-            </Typography>
-            <Typography variant="subtitle2" gutterBottom>
-              You selected
-            </Typography>
-          </div>
-          <div className="guestDetails"></div>
-        </div>
+      <div className="reserBody">
+        <Reservation
+          packageName={ReservationData.packageName}
+          adults={ReservationData.adults}
+          checkIn={ReservationData.checkIn}
+          checkOut={ReservationData.checkOut}
+          perNight={ReservationData.perNight}
+          roomsLeft={ReservationData.roomsLeft}
+        />
       </div>
       <div className="reservationFooter">
         <Footer />
@@ -36,5 +26,4 @@ function Reservation() {
     </div>
   );
 }
-
-export default Reservation;
+export default ReservationPage;

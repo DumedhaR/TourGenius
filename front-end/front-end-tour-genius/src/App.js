@@ -8,9 +8,9 @@ import DestinationPage from './pages/Destination/DestinationPage';
 import DestinationDashboard from './pages/DestinationDashboard/DestinationDashboard';
 import Payment from './pages/Payment/Payment';
 import HotelPage from './pages/Hotel/HotelPage';
-import Reservation from './pages/Reservation/ReservationPage';
 import TravelerAccountPage from './pages/TravelerAccount/TravelerAccountPage';
 import ClientAccountPage from './pages/ClientAccount/ClientAccountPage';
+import ReservationPage from './pages/Reservation/ReservationPage';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
             <Route path="/destination/dashboard" element={<DestinationDashboard />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/hotel/:hotelName" element={<HotelPage />} />
-            <Route path="/reservation/:packageName" element={<Reservation />} />
+            <Route path="/reservation/:packageName" element={<ReservationPage />} />
             <Route path="/account/traveler" element={<TravelerAccountPage />} />
             <Route path="/account/client" element={<ClientAccountPage />} />
           </Routes>
