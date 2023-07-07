@@ -15,8 +15,9 @@
   min-height: 500px;
   height: fit-content;
   display: flex;
-  padding: 40px 30px 30px 40px;
+  padding: 40px 30px 40px 45px;
   background-color: #f6efff;
+  border-radius: 5px;
 }
 .reservationFooter {
   background-color: #00cc00;

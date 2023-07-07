@@ -7,7 +7,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import SelectTextFields from '../../components/Reservation/SelectBox';
 import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -103,7 +102,7 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                       {packageName}
                     </Typography>
                     <div>
-                      <Grid container>
+                      <Grid container spacing={0} p={0}>
                         <Grid xs={4}>
                           <Typography color="text.secondary">
                             Total rooms
@@ -116,9 +115,8 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                               autoComplete="off">
                               <div>
                                 <TextField
-                                  id="outlined-select-currency"
+                                  id="totalRooms"
                                   select
-                                  label={'select'}
                                   defaultValue={1}
                                   size="small"
                                   InputProps={{
@@ -141,34 +139,68 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                         <Grid xs={4}>
                           <Typography color="text.secondary">
                             Adults
-                            <SelectTextFields
-                              values={totAdult}
-                              lable={'select'}
-                              def={adults}
-                              pop={{
-                                readOnly: true,
-                                style: {
-                                  borderRadius: '20px',
-                                  backgroundColor: 'white'
-                                }
+                            <Box
+                              component="form"
+                              sx={{
+                                '& .MuiTextField-root': { mt: 1, width: '10ch' }
                               }}
-                            />
+                              noValidate
+                              autoComplete="off">
+                              <div>
+                                <TextField
+                                  id="totalAdults"
+                                  select
+                                  defaultValue={adults}
+                                  size="small"
+                                  InputProps={{
+                                    readOnly: true,
+                                    style: {
+                                      borderRadius: '20px',
+                                      backgroundColor: 'white'
+                                    }
+                                  }}
+                                  onChange={handleRoomChange}>
+                                  {totAdult.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </div>
+                            </Box>
                           </Typography>
                         </Grid>
                         <Grid xs={4}>
                           <Typography color="text.secondary">
                             Childs
-                            <SelectTextFields
-                              values={total}
-                              lable={'select'}
-                              def={0}
-                              pop={{
-                                style: {
-                                  borderRadius: '20px',
-                                  backgroundColor: 'white'
-                                }
+                            <Box
+                              component="form"
+                              sx={{
+                                '& .MuiTextField-root': { mt: 1, width: '10ch' }
                               }}
-                            />
+                              noValidate
+                              autoComplete="off">
+                              <div>
+                                <TextField
+                                  id="totalChilds"
+                                  select
+                                  defaultValue={0}
+                                  size="small"
+                                  InputProps={{
+                                    style: {
+                                      borderRadius: '20px',
+                                      backgroundColor: 'white'
+                                    }
+                                  }}
+                                  onChange={handleRoomChange}>
+                                  {total.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </div>
+                            </Box>
                           </Typography>
                         </Grid>
                       </Grid>
@@ -176,10 +208,10 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                   </Grid>
                   <Grid xs={12}>
                     <div>
-                      <Grid container>
+                      <Grid container spacing={0} p={0}>
                         <Grid xs={4}>
                           <div id="checkin">
-                            <Typography variant="h7" component="div">
+                            <Typography variant="h6" component="div">
                               Check-in
                             </Typography>
                             <Typography color="text.secondary">{checkIn}</Typography>
@@ -187,7 +219,7 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                         </Grid>
                         <Grid xs={8}>
                           <div id="checkout">
-                            <Typography variant="h7" component="div">
+                            <Typography variant="h6" component="div">
                               Check-out
                             </Typography>
                             <Typography color="text.secondary">{checkOut}</Typography>
@@ -342,7 +374,7 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
                           component="form"
                           sx={{
                             '& > :not(style)': {
-                              width: '80%'
+                              width: '90%'
                             }
                           }}
                           noValidate
