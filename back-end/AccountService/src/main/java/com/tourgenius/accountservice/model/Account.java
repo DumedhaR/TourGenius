@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,10 +26,13 @@ import java.util.List;
 public class Account implements UserDetails {
     @Id
     private String accountId;
+    @NonNull
     @Field(name = "email")
     private String email;
+    @NonNull
     @Field(name = "password")
     private String password;
+    @NonNull
     @Field(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;

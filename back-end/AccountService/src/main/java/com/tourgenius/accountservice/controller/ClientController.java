@@ -38,11 +38,11 @@ public class ClientController {
         return clientService.getClient(email);
     }
     @PostMapping("/property/create")
-    public Property createProperty(@RequestBody PropertyDto propertyDto){
+    public String createProperty(@RequestBody PropertyDto propertyDto){
         return propertyService.createProperty(propertyDto);
     }
     @PutMapping("/property/update/{id}")
-    public Property updateProperty(@RequestBody PropertyDto propertyDto, @PathVariable String id){
+    public String updateProperty(@RequestBody PropertyDto propertyDto, @PathVariable String id){
         return propertyService.updateProperty(propertyDto, id);
     }
     @DeleteMapping("/property/delete/{id}")
@@ -51,7 +51,7 @@ public class ClientController {
         return propertyService.deleteProperty(id);
     }
     @GetMapping("property/all/{email}")
-    public List<Property> getClientAllProperties(@PathVariable String email){
-        return propertyService.getPropertiesByClient(email);
+    public Property getClientProperty(@PathVariable String email){
+        return propertyService.getPropertyByClient(email);
     }
 }

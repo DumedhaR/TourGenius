@@ -1,12 +1,12 @@
 package com.tourgenius.accountservice.model;
 
-import com.tourgenius.accountservice.dto.MediaUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -18,9 +18,13 @@ import java.util.List;
 public class Property {
     @Id
     private String propertyId;
+    @NonNull
     private String propertyName;
+    @NonNull
     private String description;
-    private String type;
-    private List<MediaUtil> media;
+    @NonNull
+    private byte [] coverImage;
+    private List<byte []> media;
+    @NonNull
     private String clientId;
 }

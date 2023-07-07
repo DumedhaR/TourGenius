@@ -9,14 +9,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class PropertyDto {
-    @NonNull
     private String propertyName;
-    @NonNull
     private String description;
-    @Nullable
-    private String type;
-    @Nullable
-    private List<MediaUtil> media;
-    @NonNull
+    private byte [] coverImage;
+    private List<byte []> media;
     private String clientId;
 }

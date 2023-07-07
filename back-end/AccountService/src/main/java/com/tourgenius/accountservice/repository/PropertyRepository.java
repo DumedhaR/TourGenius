@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PropertyRepository extends MongoRepository<Property, String> {
-    List<Property> getPropertiesByClientId(String id);
+    Property getPropertyByClientId(String id);
     boolean deleteByPropertyId(String id);
 }
