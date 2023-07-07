@@ -11,8 +11,16 @@ import HotelPage from './pages/Hotel/HotelPage';
 import TravelerAccountPage from './pages/TravelerAccount/TravelerAccountPage';
 import ClientAccountPage from './pages/ClientAccount/ClientAccountPage';
 import ReservationPage from './pages/Reservation/ReservationPage';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getLogedUserAction } from './redux/user/userSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLogedUserAction());
+  }, []);
   return (
     <>
       <CssBaseline />

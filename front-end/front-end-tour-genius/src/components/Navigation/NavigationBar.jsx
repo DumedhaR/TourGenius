@@ -5,9 +5,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUserAction } from '../../redux/user/userSlice';
 
 function Navigation() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // userEmail gain from the database when components are integrated
   const userEmail = 'user@gmail.com';
   const navigateToHome = () => {
@@ -23,7 +26,7 @@ function Navigation() {
     if (!userEmail) {
       navigate('/signIn');
     } else {
-      navigate('/');
+      dispatch(logoutUserAction({ navigate }));
     }
   };
   const navigateToProfile = () => {
