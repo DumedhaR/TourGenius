@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../utils/destinationDashboard.css';
+import { useDispatch } from 'react-redux';
 
 function DestinationDashboard() {
   const [destination, setDestination] = useState({
@@ -10,6 +11,8 @@ function DestinationDashboard() {
     description: ''
   });
 
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     const updatedValue = type === 'file' ? e.target.files[0] : value;
@@ -19,7 +22,8 @@ function DestinationDashboard() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //send destination data to back-end
+    dispatch(addDestination(destination));
+
 
     setDestination({
       name: '',
