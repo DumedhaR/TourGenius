@@ -8,6 +8,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { createUserAction, registerUserAction } from '../../redux/user/userSlice';
 
 function RegisterPage() {
   const initialValues = {
@@ -43,21 +45,25 @@ function RegisterPage() {
       .required('Required')
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     const email = data.email.toLowerCase();
     const password = data.password;
     const confirmPassword = data.confirmPassword;
-    const birthday = data.birthday;
+    const firstName = data.firstName;
+    const lastName = data.lastName;
+    const dateOfBirth = data.birthday;
+    const country = data.country;
 
     if (password === confirmPassword) {
-      console.log('Email ', email);
-      console.log('Password ', password);
-      console.log('confirm Password', confirmPassword);
-      console.log('birthday ', birthday);
+      const registerClient = dispatch(registerUserAction({ email, password }));
+      if (registerClient) {
+        dispatch(createUserAction({ email, firstName, lastName, dateOfBirth, country, navigate }));
+      }
     }
   };
-
-  const navigate = useNavigate();
 
   const navigateToSignIn = () => {
     navigate('/');

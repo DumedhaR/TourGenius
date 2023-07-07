@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUserAction } from '../../redux/user/userSlice';
 
 function LoginPage() {
   const initialValues = {
@@ -18,15 +20,15 @@ function LoginPage() {
     password: yup.string().required('Required')
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     const email = data.email.toLowerCase();
     const password = data.password;
 
-    console.log('Email ', email);
-    console.log('Password ', password);
+    dispatch(loginUserAction({ email, password, navigate }));
   };
-
-  const navigate = useNavigate();
 
   const navigateToRegister = () => {
     navigate('/register');
