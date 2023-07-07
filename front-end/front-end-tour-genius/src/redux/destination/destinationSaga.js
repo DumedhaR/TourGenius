@@ -23,7 +23,7 @@ function* addDestinationGenerator({ payload }) {
 
 function* fetchDestinationsGenerator() {
   try {
-    const response = yield call(fetchDestinations);
+    const response = yield call(fetchDestinationsAction);
 
     yield put(fetchDestinationsSuccessAction(response));
   } catch (err) {

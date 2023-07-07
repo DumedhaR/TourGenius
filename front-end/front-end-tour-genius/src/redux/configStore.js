@@ -9,7 +9,7 @@ const saga = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     userReducer: userReducer,
-    destination: destinationReducer,
+    destination: destinationReducer
   },
   middleware: [saga]
 });

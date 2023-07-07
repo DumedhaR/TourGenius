@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../utils/destinationDashboard.css';
 import { useDispatch } from 'react-redux';
+import { addDestination } from '../../services/destinationService';
 
 function DestinationDashboard() {
   const [destination, setDestination] = useState({
@@ -23,7 +24,6 @@ function DestinationDashboard() {
     e.preventDefault();
 
     dispatch(addDestination(destination));
-
 
     setDestination({
       name: '',
@@ -49,7 +49,6 @@ function DestinationDashboard() {
         <div className="form-group">
           <label>Rating:</label>
           <div className="rating-group">
-            {/* Create radio buttons for rating */}
             <label>
               <input
                 type="radio"
