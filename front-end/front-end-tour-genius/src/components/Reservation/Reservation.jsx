@@ -433,7 +433,7 @@ function Reservation({ packageName, adults, checkIn, checkOut, roomsLeft, perNig
         <div className="submit">
           <div></div>
           <ThemeProvider theme={theme}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" type="submit" size="large">
               Next
             </Button>
           </ThemeProvider>
