@@ -1,7 +1,8 @@
 .card-raw{
     margin-bottom: 15px;
 }
-#duration{
+.duration{
+    margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
 }

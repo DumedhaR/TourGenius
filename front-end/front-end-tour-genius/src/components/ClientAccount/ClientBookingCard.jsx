@@ -40,7 +40,7 @@ function ClientBookingCard({
               <Typography color="yellow">{totalRooms} rooms</Typography>
               <Typography color="text.secondary">{totalGuests} guests</Typography>
             </div>
-            <div className="card-raw" id="duration">
+            <div className="duration">
               <div id="checkin">
                 <Typography variant="h7" component="div">
                   Check-in

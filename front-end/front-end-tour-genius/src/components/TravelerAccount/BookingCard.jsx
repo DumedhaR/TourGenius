@@ -36,7 +36,7 @@ export default function BookingCard({
               <Typography color="green">{packageName}</Typography>
               <Typography color="yellow">{totalRooms} rooms</Typography>
             </div>
-            <div className="card-raw" id="duration">
+            <div className="duration">
               <div id="checkin">
                 <Typography variant="h7" component="div">
                   Check-in
