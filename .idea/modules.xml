@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/back-end/RoomReservationService/src/main/main.iml" filepath="$PROJECT_DIR$/back-end/RoomReservationService/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/back-end-template/src/main/main1.iml" filepath="$PROJECT_DIR$/back-end/back-end-template/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/AccountService/src/main/main2.iml" filepath="$PROJECT_DIR$/back-end/AccountService/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/UserService/src/main/main3.iml" filepath="$PROJECT_DIR$/back-end/UserService/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/AccountService/src/test/test.iml" filepath="$PROJECT_DIR$/back-end/AccountService/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/back-end-template/src/test/test1.iml" filepath="$PROJECT_DIR$/back-end/back-end-template/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/RoomReservationService/src/test/test2.iml" filepath="$PROJECT_DIR$/back-end/RoomReservationService/src/test/test2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/UserService/src/test/test3.iml" filepath="$PROJECT_DIR$/back-end/UserService/src/test/test3.iml" />
+    </modules>
+  </component>
+</project>
