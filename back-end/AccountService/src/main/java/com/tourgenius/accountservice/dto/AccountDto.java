@@ -10,10 +10,7 @@ import org.springframework.lang.Nullable;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class AccountDto {
-    @NonNull
     private String email;
-    @NonNull
     private String password;
-    @Nullable
     private Role role;
 }

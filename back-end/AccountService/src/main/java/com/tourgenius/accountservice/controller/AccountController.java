@@ -18,8 +18,6 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService accountService;
-    private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
 
     @PostMapping("/register")
     @ResponseStatus(value = HttpStatus.CREATED)
