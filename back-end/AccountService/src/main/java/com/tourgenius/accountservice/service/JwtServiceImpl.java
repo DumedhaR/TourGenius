@@ -1,19 +1,18 @@
 package com.tourgenius.accountservice.service;
 
+import com.tourgenius.accountservice.model.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 @Service
 public class JwtServiceImpl implements JwtService {
@@ -23,8 +22,9 @@ public class JwtServiceImpl implements JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractUserRole(String token) {
-        return extractClaim(token, claims -> claims.get("roles", String.class));
+    public Collection<? extends GrantedAuthority> extractUserRole(String token) {
+        final Claims claims = extractAllClaims(token);
+        return (Collection<? extends GrantedAuthority>) claims.get("role");
     }
 
     public Claims extractAllClaims(String token){

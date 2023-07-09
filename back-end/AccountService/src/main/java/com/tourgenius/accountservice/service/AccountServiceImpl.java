@@ -3,21 +3,24 @@ package com.tourgenius.accountservice.service;
 import com.tourgenius.accountservice.config.TokenCookie;
 import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.model.Account;
+import com.tourgenius.accountservice.model.Client;
+import com.tourgenius.accountservice.model.Role;
+import com.tourgenius.accountservice.model.Traveler;
 import com.tourgenius.accountservice.repository.AccountRepository;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
+import com.tourgenius.accountservice.repository.ClientRepository;
+import com.tourgenius.accountservice.repository.TravelerRepository;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AccountServiceImpl implements AccountService{
 
     private final AccountRepository accountRepository;
@@ -25,6 +28,8 @@ public class AccountServiceImpl implements AccountService{
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final TokenCookie tokenCookie;
+    private TravelerRepository travelerRepository;
+    private ClientRepository clientRepository;
     @Override
     public ResponseEntity<String> createAccount(@NotNull AccountDto accountDto) {
         boolean isAvailable = accountRepository.findAccountByEmail(accountDto.getEmail()).isPresent();
@@ -32,11 +37,10 @@ public class AccountServiceImpl implements AccountService{
             Account account = Account.builder()
                     .email(accountDto.getEmail())
                     .password(passwordEncoder.encode(accountDto.getPassword()))
-                    .role(accountDto.getRole() == null ? "Traveler" : accountDto.getRole())
+                    .role(accountDto.getRole() == null ? Role.Traveler : accountDto.getRole())
                     .build();
             accountRepository.save(account);
-            setTokenCookies(account);
-            return ResponseEntity.ok().headers(setTokenCookies(account)).body("created");
+            return ResponseEntity.ok().body("created");
         }
         throw new IllegalArgumentException("email already used!");
     }
@@ -48,8 +52,17 @@ public class AccountServiceImpl implements AccountService{
                 accountDto.getPassword()
         ));
         Account account = accountRepository.findAccountByEmail(accountDto.getEmail()).orElseThrow();
+        HttpHeaders headers = setTokenCookies(account);
+        return ResponseEntity.ok().headers(headers).body("authenticated");
+    }
 
-        return ResponseEntity.ok().headers(setTokenCookies(account)).body("authenticated");
+    @Override
+    public ResponseEntity<String> signOut() {
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.add(HttpHeaders.SET_COOKIE, tokenCookie.deleteRefreshTokenCookie().toString());
+        responseHeader.add(HttpHeaders.SET_COOKIE, tokenCookie.deleteAccessTokenCookie().toString());
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok().headers(responseHeader).body("logOut successful");
     }
 
     @Override
@@ -79,16 +92,32 @@ public class AccountServiceImpl implements AccountService{
         }
         userEmail = jwtService.extractUserName(refreshToken);
         if(!userEmail.isEmpty()){
-            var account = accountRepository.findAccountByEmail(userEmail).orElseThrow();
+            Account account = accountRepository.findAccountByEmail(userEmail).orElseThrow();
         if (jwtService.isTokenValid(refreshToken,account)){
-            var newAccessToken = jwtService.generateToken(account,60 * 60 * 1000);
+            String newAccessToken = jwtService.generateToken(account,60 * 60 * 1000);
             addAccessTokenCookie(responseHeaders, newAccessToken);
         }
         }
         return ResponseEntity.ok().headers(responseHeaders).body("refreshed");
     }
 
-    private  HttpHeaders setTokenCookies(Account account) {
+    @Override
+    public ResponseEntity<?> getUser(String accessToken) {
+        String userEmail = jwtService.extractUserName(accessToken);
+        Account user  = accountRepository.findAccountByEmail(userEmail).orElseThrow();
+        if(user.getRole().equals(Role.Traveler)){
+            Traveler traveler = travelerRepository.findTravellerByEmail(userEmail).orElseThrow();
+            return ResponseEntity.ok().body(traveler);
+        }
+        else if(user.getRole().equals(Role.Client)){
+            Client client = clientRepository.findClientByEmail(userEmail).orElseThrow();
+            return ResponseEntity.ok().body(client);
+        }
+        return ResponseEntity.badRequest().body("No account found");
+    }
+
+    @Override
+    public HttpHeaders setTokenCookies(Account account) {
         HttpHeaders responseHeaders = new HttpHeaders();
         String newAccessToken = jwtService.generateToken(account,60 * 60 * 1000);
         String newRefreshToken = jwtService.generateToken(account,60 * 60 * 1000 * 24);

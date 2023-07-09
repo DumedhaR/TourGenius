@@ -23,23 +23,28 @@ public class SecurityConfig {
     private final AuthFilter authFilter;
     private final AuthenticationProvider authenticationProvider;
 
-    //private final AccessDenied accessDeniedHandler;
-
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/account/**")
+                .requestMatchers("/account/auth",
+                        "/account/register",
+                        "/account/refresh",
+                        "/traveler/create",
+                        "/client/create",
+                        "/client/get/**",
+                        "/client/property/all")
                 .permitAll()
+                .requestMatchers("/traveler/update",
+                        "/traveler/delete").hasAuthority("Traveler")
+                .requestMatchers("/client/update",
+                        "/client/delete",
+                        "/client/property/create",
+                        "/client/property/update",
+                        "/client/property/delete").hasAuthority("Client")
                 .anyRequest()
                 .authenticated()
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> {
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.getWriter().write("Unauthorized");
-                })
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
