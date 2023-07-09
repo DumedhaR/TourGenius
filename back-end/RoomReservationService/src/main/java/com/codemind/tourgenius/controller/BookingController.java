@@ -22,29 +22,14 @@ public class BookingController {
         return bookingService.create(request);
     }
 
-    @GetMapping("/search")
-    public List<BookingSearchResponse> search() {
-        List<BookingSearchResponse> bookingSearchResponseList =  new ArrayList<>();
-        List<Booking> bookings = bookingService.findAllBookings();
-        return getBookingSearchResponses(bookingSearchResponseList, bookings);
-    }
-
     @GetMapping ("/traveller/{id}")
-    public List<BookingSearchResponse> getBookingByUserId(@PathVariable String id) {
-        List<BookingSearchResponse> bookingSearchResponseList =  new ArrayList<>();
-        List<Booking> bookings = bookingService.findAllBookingsByUserId(id);
-        return getBookingSearchResponses(bookingSearchResponseList, bookings);
+    public List<Booking> getBookingByUserId(@PathVariable String id) {
+        return bookingService.findAllBookingsByUserId(id);
     }
 
     @GetMapping ("/client/{id}")
-    public List<BookingSearchResponse> getBookingByClientId(@PathVariable String id) {
-        List<BookingSearchResponse> bookingSearchResponseList =  new ArrayList<>();
-        List<Booking> bookings = bookingService.findAllBookingsByClientId(id);
-        return getBookingSearchResponses(bookingSearchResponseList, bookings);
-    }
-
-    private List<BookingSearchResponse> getBookingSearchResponses(List<BookingSearchResponse> bookingSearchResponseList, List<Booking> bookings) {
-        return bookingSearchResponseList;
+    public List<Booking> getBookingByClientId(@PathVariable String id) {
+        return bookingService.findAllBookingsByClientId(id);
     }
 
     @DeleteMapping ("/delete/{id}")
