@@ -18,5 +18,10 @@ public class Booking {
     private String clientId;
     private String packageId;
     private List<String> rooms;
+    private double payment;
+    private String guestEmail;
+    private String guestFirstName;
+    private String guestLastName;
+    private int totalGuest;
     private boolean isOpen;
 }

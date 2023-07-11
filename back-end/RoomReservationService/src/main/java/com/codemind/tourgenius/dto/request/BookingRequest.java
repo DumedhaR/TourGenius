@@ -16,4 +16,9 @@ public class BookingRequest {
     private String clientId;
     private String packageId;
     private int totalRooms;
+    private double payment;
+    private String guestEmail;
+    private String guestFirstName;
+    private String guestLastName;
+    private int totalGuest;
 }

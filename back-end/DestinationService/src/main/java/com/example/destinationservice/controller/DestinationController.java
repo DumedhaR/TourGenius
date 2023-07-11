@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/destinations")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class DestinationController {
 
     private final DestinationService destinationService;

@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/package")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class ClientPackageController {
 
     @Autowired

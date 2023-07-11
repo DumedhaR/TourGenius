@@ -3,6 +3,7 @@ package com.codemind.tourgenius.service;
 import com.codemind.tourgenius.dto.request.BookingRequest;
 import com.codemind.tourgenius.model.Booking;
 import com.codemind.tourgenius.repository.BookingRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +19,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Transactional
     @Override
-    public String create(BookingRequest request) {
+    public String create(@NotNull BookingRequest request) {
         Booking booking = new Booking();
-        booking.setCheckInDate(request.getCheckInDate());
-        booking.setCheckOutDate(request.getCheckOutDate());
-        booking.setClientId(request.getClientId());
-        booking.setUserId(request.getUserId());
-        booking.setPackageId(request.getPackageId());
         try {
             booking.setRooms(clientPackageService.getAvailableRoomsByClientPackage(
                     request.getClientId(),
@@ -35,6 +31,16 @@ public class BookingServiceImpl implements BookingService {
             System.out.println("rooms are not available");
             return "Booking failed, rooms are not available";
         }
+        booking.setCheckInDate(request.getCheckInDate());
+        booking.setCheckOutDate(request.getCheckOutDate());
+        booking.setClientId(request.getClientId());
+        booking.setUserId(request.getUserId());
+        booking.setPackageId(request.getPackageId());
+        booking.setPayment(request.getPayment());
+        booking.setGuestEmail(request.getGuestEmail());
+        booking.setGuestFirstName(request.getGuestFirstName());
+        booking.setGuestFirstName(request.getGuestFirstName());
+        booking.setTotalGuest(request.getTotalGuest());
         booking.setOpen(true);
         bookingRepository.save(booking);
         return "created";

@@ -11,6 +11,7 @@ import java.text.ParseException;
 
 @RestController
 @RequestMapping("/traveler")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequiredArgsConstructor
 public class TravelerController {
 

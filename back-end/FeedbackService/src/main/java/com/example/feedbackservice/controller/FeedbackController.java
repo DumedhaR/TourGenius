@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "feedback")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class FeedbackController {
 
     private final FeedbackService feedbackService;
