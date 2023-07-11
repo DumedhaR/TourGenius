@@ -2,6 +2,8 @@
   width: 100%;
   min-height: 800px;
   height: fit-content;
+  padding: 25px 25px 0px 25px;
+  
 }
 .desTopicSummary {
   display: flex;
@@ -13,7 +15,7 @@
 }
 .desImageContainer {
   width: 50%;
-  height: 350px;
+  height: 500px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 30px;
@@ -21,7 +23,7 @@
 .desDescriptionContainer {
   width: 100%;
   height: 450px;
-  padding: 10px 20px 30px 30px;
+  padding: 25px 20px 25px 30px;
 }
 #desName {
   margin-left: 30px;
@@ -37,7 +39,7 @@
   line-height: 0;
 }
 #desImage {
-  border-radius: 10px;
+  border-radius: 7px;
 }
 .desDescription {
   width: 100%;

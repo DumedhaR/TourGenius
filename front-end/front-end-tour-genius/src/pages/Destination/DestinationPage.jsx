@@ -4,7 +4,6 @@ import '../../utils/destinationPage.css';
 // This DataFiles are removed when components are intergrated
 import { YalaData, yalaImageData } from './yalaDestinationData';
 import { DestinationData } from '../../components/Destination/destinationData';
-
 import DestinationIntro from '../../components/Destination/IntroduceDestination';
 import ImageContainer from '../../components/ImageList/ImageList';
 import Footer from '../../components/Footer/Footer';
