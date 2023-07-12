@@ -25,4 +25,14 @@ public class DestinationServiceImpl implements DestinationService{
     public List<Destination> getAllDestinations(){
         return destinationRepository.findAll();
     }
+
+    @Override
+    public Destination getDestinationById(String id) {
+        return destinationRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteDestinationById(String id) {
+        destinationRepository.deleteById(id);
+    }
 }
