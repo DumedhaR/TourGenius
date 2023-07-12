@@ -1,5 +1,6 @@
 package com.example.destinationservice.controller;
 
+import com.example.destinationservice.dto.DestinationDTO;
 import com.example.destinationservice.model.Destination;
 import com.example.destinationservice.service.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,29 @@ public class DestinationController {
     public ResponseEntity<Destination> addDestination(@RequestBody Destination destination){
         Destination savedDestination = destinationService.saveDestination(destination);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDestination);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Destination> updateDestination(@PathVariable String id, @RequestBody DestinationDTO destinationDTO) {
+        Destination existingDestination = destinationService.getDestinationById(id);
+
+        if (existingDestination == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        existingDestination.setName(destinationDTO.getName());
+        existingDestination.setImage(destinationDTO.getImage());
+        existingDestination.setRating(destinationDTO.getRating());
+        existingDestination.setCountry(destinationDTO.getCountry());
+        existingDestination.setDescription(destinationDTO.getDescription());
+
+        Destination updatedDestination = destinationService.saveDestination(existingDestination);
+        return ResponseEntity.ok(updatedDestination);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDestination(@PathVariable String id) {
+        destinationService.deleteDestinationById(id);
+        return ResponseEntity.noContent().build();
     }
 }

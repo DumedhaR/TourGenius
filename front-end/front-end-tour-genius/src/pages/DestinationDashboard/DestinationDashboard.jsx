@@ -8,6 +8,7 @@ function DestinationDashboard() {
     name: '',
     image: '',
     rating: '',
+    country: '',
     description: ''
   });
   const [editingIndex, setEditingIndex] = useState(-1);
@@ -29,6 +30,7 @@ function DestinationDashboard() {
       name: '',
       image: '',
       rating: '',
+      country: '',
       description: ''
     });
   };
@@ -50,6 +52,7 @@ function DestinationDashboard() {
       name: '',
       image: '',
       rating: '',
+      country: '',
       description: ''
     });
   };
@@ -97,6 +100,15 @@ function DestinationDashboard() {
             <input
               className="destinationRecord"
               type="text"
+              name="country"
+              value={newDestination.country}
+              onChange={handleChange}
+              placeholder="Country"
+              required
+            />
+            <input
+              className="destinationRecord"
+              type="text"
               name="description"
               value={newDestination.description}
               onChange={handleChange}
@@ -119,6 +131,7 @@ function DestinationDashboard() {
                   !newDestination.name ||
                   !newDestination.image ||
                   !newDestination.rating ||
+                  !newDestination.country ||
                   !newDestination.description
                 }>
                 Add
@@ -133,6 +146,7 @@ function DestinationDashboard() {
                 <th>Name</th>
                 <th>Image</th>
                 <th>Rating</th>
+                <th>Country</th>
                 <th>Description</th>
                 <th>Actions</th>
               </tr>
@@ -143,6 +157,7 @@ function DestinationDashboard() {
                   <td>{destination.name}</td>
                   <td>{destination.image}</td>
                   <td>{destination.rating}</td>
+                  <td>{destination.country}</td>
                   <td>{destination.description}</td>
                   <td className="actionButtons">
                     <Button
