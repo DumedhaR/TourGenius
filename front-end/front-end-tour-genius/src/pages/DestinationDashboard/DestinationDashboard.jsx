@@ -1,116 +1,169 @@
 import React, { useState } from 'react';
 import '../../utils/destinationDashboard.css';
-import { useDispatch } from 'react-redux';
-import { addDestination } from '../../services/destinationService';
+import { FormControl, Button } from '@mui/material';
 
 function DestinationDashboard() {
-  const [destination, setDestination] = useState({
+  const [destinations, setDestinations] = useState([]);
+  const [newDestination, setNewDestination] = useState({
     name: '',
     image: '',
     rating: '',
-    country: '',
     description: ''
   });
-
-  const dispatch = useDispatch();
+  const [editingIndex, setEditingIndex] = useState(-1);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-    const updatedValue = type === 'file' ? e.target.files[0] : value;
-    setDestination((prevState) => ({ ...prevState, [name]: updatedValue }));
+    let updatedValue = type === 'file' ? e.target.files[0].name : value;
+
+    if (name === 'rating') {
+      updatedValue = Math.min(Math.max(parseInt(updatedValue), 1), 5);
+    }
+
+    setNewDestination((prevState) => ({ ...prevState, [name]: updatedValue }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(addDestination(destination));
-
-    setDestination({
+  const handleAddDestination = () => {
+    setDestinations((prevDestinations) => [...prevDestinations, newDestination]);
+    setNewDestination({
       name: '',
       image: '',
       rating: '',
-      country: '',
       description: ''
     });
   };
 
+  const handleEditDestination = (index) => {
+    setEditingIndex(index);
+    const editedDestination = destinations[index];
+    setNewDestination(editedDestination);
+  };
+
+  const handleUpdateDestination = () => {
+    setDestinations((prevDestinations) => {
+      const updatedDestinations = [...prevDestinations];
+      updatedDestinations[editingIndex] = newDestination;
+      return updatedDestinations;
+    });
+    setEditingIndex(-1);
+    setNewDestination({
+      name: '',
+      image: '',
+      rating: '',
+      description: ''
+    });
+  };
+
+  const handleDeleteDestination = (index) => {
+    setDestinations((prevDestinations) => prevDestinations.filter((_, i) => i !== index));
+  };
+
+  const isEditing = editingIndex !== -1;
+
   return (
-    <div className="dashboard-container">
-      <h2 className="dashboard-title">Destination Dashboard</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name:</label>
-          <input type="text" name="name" value={destination.name} onChange={handleChange} />
+    <div className="destinationDashboard">
+      <div className="backgroundDashboard">
+        <div className="formContent">Destination Dashboard</div>
+        <div className="destinationForm">
+          <FormControl>
+            <input
+              className="destinationRecord"
+              type="text"
+              name="name"
+              value={newDestination.name}
+              onChange={handleChange}
+              placeholder="Name"
+              required
+            />
+            <input
+              className="destinationRecord"
+              type="file"
+              name="image"
+              onChange={handleChange}
+              placeholder="Image"
+              required
+            />
+            <input
+              className="destinationRecord"
+              type="number"
+              name="rating"
+              value={newDestination.rating}
+              onChange={handleChange}
+              placeholder="Rating (1-5)"
+              min="1"
+              max="5"
+              required
+            />
+            <input
+              className="destinationRecord"
+              type="text"
+              name="description"
+              value={newDestination.description}
+              onChange={handleChange}
+              placeholder="Description"
+              required
+            />
+            {isEditing ? (
+              <Button
+                className="desUpdateButton"
+                variant="contained"
+                onClick={handleUpdateDestination}>
+                Update
+              </Button>
+            ) : (
+              <Button
+                className="desAddButton"
+                variant="contained"
+                onClick={handleAddDestination}
+                disabled={
+                  !newDestination.name ||
+                  !newDestination.image ||
+                  !newDestination.rating ||
+                  !newDestination.description
+                }>
+                Add
+              </Button>
+            )}
+          </FormControl>
         </div>
-        <div className="form-group">
-          <label>Image:</label>
-          <input type="file" accept="image/*" name="image" onChange={handleChange} />
+        <div className="destinationTable">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Rating</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {destinations.map((destination, index) => (
+                <tr key={index}>
+                  <td>{destination.name}</td>
+                  <td>{destination.image}</td>
+                  <td>{destination.rating}</td>
+                  <td>{destination.description}</td>
+                  <td className="actionButtons">
+                    <Button
+                      className="desEditButton"
+                      variant="contained"
+                      onClick={() => handleEditDestination(index)}>
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="desDeleteButton"
+                      onClick={() => handleDeleteDestination(index)}>
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div className="form-group">
-          <label>Rating:</label>
-          <div className="rating-group">
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="1"
-                checked={destination.rating === '1'}
-                onChange={handleChange}
-              />
-              <span className="star">&#9733;</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="2"
-                checked={destination.rating === '2'}
-                onChange={handleChange}
-              />
-              <span className="star">&#9733;</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="3"
-                checked={destination.rating === '3'}
-                onChange={handleChange}
-              />
-              <span className="star">&#9733;</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="4"
-                checked={destination.rating === '4'}
-                onChange={handleChange}
-              />
-              <span className="star">&#9733;</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="5"
-                checked={destination.rating === '5'}
-                onChange={handleChange}
-              />
-              <span className="star">&#9733;</span>
-            </label>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Country:</label>
-          <input type="text" name="country" value={destination.country} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Description:</label>
-          <textarea name="description" value={destination.description} onChange={handleChange} />
-        </div>
-        <button type="submit">Add Destination</button>
-      </form>
+      </div>
     </div>
   );
 }
