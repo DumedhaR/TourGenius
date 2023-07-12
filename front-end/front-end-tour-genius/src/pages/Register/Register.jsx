@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
-import { createUserAction, registerUserAction } from '../../redux/user/userSlice';
+import { createUserAction } from '../../redux/user/userSlice';
 
 function RegisterPage() {
   const initialValues = {
@@ -58,10 +58,9 @@ function RegisterPage() {
     const country = data.country;
 
     if (password === confirmPassword) {
-      const registerClient = dispatch(registerUserAction({ email, password }));
-      if (registerClient) {
-        dispatch(createUserAction({ email, firstName, lastName, dateOfBirth, country, navigate }));
-      }
+      dispatch(
+        createUserAction({ email, password, firstName, lastName, dateOfBirth, country, navigate })
+      );
     }
   };
 
@@ -134,7 +133,7 @@ function RegisterPage() {
                   label="Date of Birth"
                   variant="outlined"
                   size="small"
-                  placeholder="MM/DD/YYYY"
+                  placeholder="MM-DD-YYYY"
                   helperText={
                     <ErrorMessage
                       name="birthday"

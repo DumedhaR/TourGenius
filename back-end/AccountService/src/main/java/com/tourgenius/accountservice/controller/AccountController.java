@@ -22,7 +22,7 @@ public class AccountController {
 
     @PostMapping("/register")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<String> register(@RequestBody AccountDto accountDto){
+    public String register(@RequestBody AccountDto accountDto){
         return accountService.createAccount(accountDto);
     }
 

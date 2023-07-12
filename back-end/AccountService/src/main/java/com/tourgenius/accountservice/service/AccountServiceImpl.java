@@ -31,7 +31,8 @@ public class AccountServiceImpl implements AccountService{
     private TravelerRepository travelerRepository;
     private ClientRepository clientRepository;
     @Override
-    public ResponseEntity<String> createAccount(@NotNull AccountDto accountDto) {
+    public String createAccount(@NotNull AccountDto accountDto) {
+
         boolean isAvailable = accountRepository.findAccountByEmail(accountDto.getEmail()).isPresent();
         if(!isAvailable) {
             Account account = Account.builder()
@@ -40,7 +41,7 @@ public class AccountServiceImpl implements AccountService{
                     .role(accountDto.getRole() == null ? Role.Traveler : accountDto.getRole())
                     .build();
             accountRepository.save(account);
-            return ResponseEntity.ok().body("created");
+            return "created";
         }
         throw new IllegalArgumentException("email already used!");
     }

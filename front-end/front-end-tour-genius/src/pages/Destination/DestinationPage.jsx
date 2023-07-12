@@ -3,7 +3,7 @@ import NavigationBar from '../../components/Navigation/NavigationBar';
 import '../../utils/destinationPage.css';
 // This DataFiles are removed when components are intergrated
 import { YalaData, yalaImageData } from './yalaDestinationData';
-import { DestinationData } from '../../components/Destination/destinationData';
+import { NearDestinationData } from './nearDestinationData';
 import DestinationIntro from '../../components/Destination/IntroduceDestination';
 import ImageContainer from '../../components/ImageList/ImageList';
 import Footer from '../../components/Footer/Footer';
@@ -96,13 +96,13 @@ function DestinationPage() {
         <div className="desNearDestination" ref={nearSimilarDestinationRef}>
           <NearSimilarPlacesContainer
             desPlaceTopic="Nearby places"
-            destinationData={DestinationData}
+            destinationData={NearDestinationData}
           />
         </div>
         <div className="desSimilarDestination">
           <NearSimilarPlacesContainer
             desPlaceTopic="Similar places"
-            destinationData={DestinationData}
+            destinationData={NearDestinationData}
           />
         </div>
       </div>

@@ -1,7 +1,9 @@
 package com.tourgenius.accountservice.service;
 
+import com.tourgenius.accountservice.dto.AccountDto;
 import com.tourgenius.accountservice.dto.TravelerDto;
 import com.tourgenius.accountservice.model.Account;
+import com.tourgenius.accountservice.model.Role;
 import com.tourgenius.accountservice.model.Traveler;
 import com.tourgenius.accountservice.repository.AccountRepository;
 import com.tourgenius.accountservice.repository.TravelerRepository;
@@ -9,13 +11,16 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TravelerServiceImpl implements TravelerService {
 
     private final TravelerRepository travelerRepository;
@@ -26,7 +31,14 @@ public class TravelerServiceImpl implements TravelerService {
 
     @Override
     public ResponseEntity<String> createTraveller(@NotNull TravelerDto travelerDto) throws ParseException {
+        AccountDto accountDto = AccountDto.builder()
+                .email(travelerDto.getEmail())
+                .password(travelerDto.getPassword())
+                .role(Role.Traveler)
+                .build();
+        accountService.createAccount(accountDto);
         Account account = accountRepository.findAccountByEmail(travelerDto.getEmail()).orElseThrow();
+        try{
         Traveler traveler = Traveler.builder()
                 .firstName(travelerDto.getFirstName())
                 .lastName(travelerDto.getLastName())
@@ -35,8 +47,14 @@ public class TravelerServiceImpl implements TravelerService {
                 .country(travelerDto.getCountry())
                 .profilePicture(travelerDto.getProfilePicture())
                 .build();
-        travelerRepository.save(traveler);
-        return ResponseEntity.ok().headers(accountService.setTokenCookies(account)).body("created");
+
+            travelerRepository.save(traveler);
+        }catch (Exception e){
+            accountService.deleteAccount(travelerDto.getEmail());
+            System.out.println(Arrays.toString(e.getStackTrace()));
+            return ResponseEntity.badRequest().body("Error");
+        }
+        return ResponseEntity.ok().headers(accountService.setTokenCookies(account)).body("Created");
     }
 
     @Override

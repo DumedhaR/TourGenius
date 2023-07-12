@@ -2,11 +2,9 @@ import {
   createUserService,
   getLogedUserService,
   loginUserService,
-  logoutUserService,
-  registerUserService
+  logoutUserService
 } from '../../services/userService';
 import {
-  registerUserAction,
   createUserAction,
   loginUserAction,
   saveUserAction,
@@ -18,15 +16,10 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 function* registerUserGenerator({ payload }) {
   try {
-    const responseRegister = yield call(registerUserService, payload);
-    alert('SuccessFully Created Account');
-    if (responseRegister) {
-      const responseCreate = yield call(createUserService, payload);
-      if (responseCreate) {
-        payload.navigate('/');
-      } else {
-        alert('Registration Failed! Please Enter Valid Details');
-      }
+    const responseCreate = yield call(createUserService, payload);
+    if (responseCreate === 'Created') {
+      alert('Registration Completed!');
+      payload.navigate('/');
     } else {
       alert('Registration Failed! Please Enter Valid Details');
     }
@@ -73,7 +66,6 @@ function* logoutUserGenerator({ payload }) {
 }
 
 function* allUsers() {
-  yield takeEvery(registerUserAction, registerUserGenerator);
   yield takeEvery(createUserAction, registerUserGenerator);
   yield takeEvery(loginUserAction, loginUserGenerator);
   yield takeEvery(getLogedUserAction, getLogedUserGenerator);

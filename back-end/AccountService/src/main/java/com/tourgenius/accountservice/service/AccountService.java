@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface AccountService {
 
-    ResponseEntity<String> createAccount(AccountDto accountDto);
+    String createAccount(AccountDto accountDto);
     ResponseEntity<String> authenticate(AccountDto accountDto);
     ResponseEntity<String> signOut();
     Account changePassword(AccountDto accountDto);

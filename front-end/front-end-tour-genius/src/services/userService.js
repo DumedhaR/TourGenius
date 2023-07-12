@@ -1,21 +1,9 @@
 import axios from 'axios';
 
-export const registerUserService = async (user) => {
-  const userData = {
-    email: user.email,
-    password: user.password
-  };
-  try {
-    const responseData = await axios.post('http://localhost:9001/account/register', userData);
-    return responseData;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 export const createUserService = async (user) => {
   const userData = {
     email: user.email,
+    password: user.password,
     firstName: user.firstName,
     lastName: user.lastName,
     dateOfBirth: user.dateOfBirth,
@@ -25,7 +13,7 @@ export const createUserService = async (user) => {
     const response = await axios.post('http://localhost:9001/traveler/create', userData, {
       withCredentials: true
     });
-    return response;
+    return response.data;
   } catch (err) {
     console.log(err);
   }
