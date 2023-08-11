@@ -13,7 +13,6 @@ public interface BookingRepository extends MongoRepository<Booking,String> {
 
     List<Booking> getBookingsByUserId(String id);
     List<Booking> getBookingsByClientId(String id);
-
     @Query("{$and: [" +
             "{clientId: ?0}, {$or: [ " +
             "{$and: [{checkInDate: {$lte: ?1}}, {checkOutDate: {$gte: ?2}}]}, " +

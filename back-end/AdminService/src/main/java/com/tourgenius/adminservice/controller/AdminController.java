@@ -16,7 +16,7 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping("/create")
-    public String createAdmin(@RequestBody AdminDto adminDto){
+    public ResponseEntity<String> createAdmin(@RequestBody AdminDto adminDto){
         return adminService.createAdmin(adminDto);
     }
     @PutMapping("/update")

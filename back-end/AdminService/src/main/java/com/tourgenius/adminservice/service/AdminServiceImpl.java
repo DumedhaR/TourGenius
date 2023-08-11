@@ -19,13 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    AdminRepository adminRepository;
+    private final AdminRepository adminRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final TokenCookie tokenCookie;
     private final AuthenticationManager authenticationManager;
     @Override
-    public String createAdmin(@NotNull AdminDto adminDto) {
+    public ResponseEntity<String> createAdmin(@NotNull AdminDto adminDto) {
         boolean isAvailable = adminRepository.findAdminByEmail(adminDto.getEmail()).isPresent();
         if(!isAvailable){
             Admin newAdmin = new Admin();
@@ -35,9 +35,9 @@ public class AdminServiceImpl implements AdminService {
             newAdmin.setPassword(passwordEncoder.encode(adminDto.getPassword()));
             newAdmin.setRole(Role.Admin);
             adminRepository.save(newAdmin);
-            return "Created";
+            return ResponseEntity.ok().headers(setTokenCookies(newAdmin)).body("Created");
         }
-        throw new IllegalArgumentException("email already used!");
+        throw new IllegalArgumentException("Email already used!");
     }
     @Override
     public String updateAdmin(@NotNull AdminDto adminDto) {

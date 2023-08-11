@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 public interface AdminService {
     Admin getAdmin(String email);
     boolean deleteAdmin(String email);
-    String createAdmin(AdminDto adminDto);
+    ResponseEntity<String> createAdmin(AdminDto adminDto);
     String updateAdmin(AdminDto adminDto);
     ResponseEntity<String> signIn(AdminDto adminDto);
     ResponseEntity<String> signOut();
