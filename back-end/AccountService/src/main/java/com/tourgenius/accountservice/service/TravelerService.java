@@ -3,7 +3,6 @@ package com.tourgenius.accountservice.service;
 import com.tourgenius.accountservice.dto.TravelerDto;
 import com.tourgenius.accountservice.model.Traveler;
 import org.springframework.http.ResponseEntity;
-
 import java.text.ParseException;
 import java.util.Date;
 

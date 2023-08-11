@@ -1,5 +1,6 @@
 package com.tourgenius.adminservice.dto;
 
+import com.tourgenius.adminservice.model.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,5 +9,6 @@ import lombok.NoArgsConstructor;
 public class AdminDto {
     private String email;
     private String password;
-    private String name;
+    private String firstName;
+    private String lastName;
 }
